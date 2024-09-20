@@ -1,0 +1,193 @@
+syntax = "proto3";
+
+
+option go_package = "internal/proto/gophkeeper";
+
+package proto.gophkeeper;
+
+// GophKeeperServer service provides ability to store date securely
+service GophKeeperServer{
+  rpc SignUp(SignUpRequest) returns (SignUpResponse);
+  rpc SignIn(SignInRequest) returns (SignInResponse);
+
+  //  rpc CreateCredentials(CreateCredentialsRequest) returns (CreateCredentialsResponse);
+  //  rpc GetCredentials(GetCredentialsRequest) returns (GetCredentialsResponse);
+  //  rpc UpdateCredentials(UpdateCredentialsRequest) returns (UpdateCredentialsResponse);
+  //  rpc DeleteCredentials(DeleteCredentialsRequest) returns (DeleteCredentialsResponse);
+  //
+  rpc CreateCard(CreateCardRequest) returns (CreateCardResponse);
+  rpc GetCards(GetCardsRequest) returns (GetCardsResponse);
+  rpc UpdateCard(UpdateCardRequest) returns (UpdateCardResponse);
+  rpc DeleteCard(DeleteCardRequest) returns (DeleteCardResponse);
+  //
+  //  rpc GetFiles(GetFilesRequest) returns (GetFilesResponse);
+  //  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+  //
+  rpc SubscribeToChanges(SubscribeToChangesRequest) returns (stream SubscribeToChangesResponse);
+  //  rpc UploadFile(stream UploadFileRequest) returns (stream UploadFileResponse);
+  //  rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse);
+}
+
+message SignUpRequest {
+  string login = 1 ;
+  string password = 2 ;
+}
+
+message SignUpResponse {
+  string token = 1 ;
+}
+
+message SignInRequest {
+  string login = 1;
+  string password = 2 ;
+}
+
+message SignInResponse {
+  string token = 1;
+}
+
+//message CreateCredentialsRequest {
+//  string service_name = 1 [ (buf.validate.field).string.min_len = 1 ];
+//  string identity = 2 [ (buf.validate.field).string.min_len = 1 ];
+//  string password = 3 [ (buf.validate.field).string.min_len = 1 ];
+//}
+//
+//message CreateCredentialsResponse {
+//  string id = 1 [ (buf.validate.field).string.uuid = true ];
+//  string service_name = 2;
+//  string uploaded_at = 3;
+//}
+//
+//message GetCredentialsRequest {
+//}
+//
+//message GetCredentialsResponse {
+//  message Credential {
+//    string id = 1 [ (buf.validate.field).string.uuid = true ];
+//    string service_name = 2;
+//    string identity = 3;
+//    string password = 4;
+//    string uploaded_at = 5;
+//  }
+//  repeated Credential credentials = 1;
+//}
+//
+//message UpdateCredentialsRequest {
+//  string id = 1 [ (buf.validate.field).string.uuid = true ];
+//  string service_name = 2 [ (buf.validate.field).string.min_len = 1 ];
+//  string identity = 3 [ (buf.validate.field).string.min_len = 1 ];
+//  string password = 4 [ (buf.validate.field).string.min_len = 1 ];
+//}
+//
+//message UpdateCredentialsResponse {
+//  string id = 1 [ (buf.validate.field).string.uuid = true ];
+//  string service_name = 2;
+//  string uploaded_at = 3;
+//}
+//
+//message DeleteCredentialsRequest {
+//  string id = 1 [ (buf.validate.field).string.uuid = true ];
+//}
+//
+//message DeleteCredentialsResponse {
+//}
+//
+
+
+message CreateCardRequest {
+  message Card {
+    string number = 1;
+    string expiration_date = 2;
+    string holder_name = 3;
+    string cvv = 4;
+  }
+  Card card = 1;
+}
+
+message CreateCardResponse {
+  string cardID = 1;
+}
+
+message GetCardsRequest {
+}
+
+
+message GetCardsResponse {
+  message Card {
+    string id = 1;
+    string number = 2;
+    string expiration_date = 3;
+    string holder_name = 4;
+    string cvv = 5;
+  }
+  repeated Card cards = 1;
+}
+
+message UpdateCardRequest {
+  message Card {
+    string id = 1;
+    string number = 2;
+    string expiration_date = 3;
+    string holder_name = 4;
+    string cvv = 5;
+  }
+  Card card = 1;
+}
+
+message UpdateCardResponse {
+  bool result = 1;
+}
+
+message DeleteCardRequest {
+  string id = 1;
+}
+
+message DeleteCardResponse {
+  bool result = 1;
+}
+
+message SubscribeToChangesRequest {
+}
+
+message SubscribeToChangesResponse {
+  string product = 1;
+  string action = 2;
+  string id = 3;
+}
+
+//message UploadFileRequest {
+//  bytes data = 1;
+//  string filename = 2;
+//}
+//
+//message UploadFileResponse {
+//  string message = 1;
+//  bool success = 2;
+//}
+//
+//message GetFilesRequest {
+//}
+//
+//message GetFilesResponse {
+//  message File {
+//    string name = 1;
+//    string uploaded_at = 2;
+//    string size = 3;
+//  }
+//  repeated File files = 1;
+//}
+//
+//message DeleteFileRequest {
+//  string name = 1;
+//}
+//
+//message DeleteFileResponse {
+//}
+//
+//message DownloadFileRequest {
+//  string name = 1;
+//}
+//
+//message DownloadFileResponse {
+//  bytes data = 1;
+//}
