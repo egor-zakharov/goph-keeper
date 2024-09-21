@@ -1,16 +1,16 @@
-package auth
+package authdata
 
 import (
 	"context"
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	"github.com/egor-zakharov/goph-keeper/internal/storage/auth"
+	"github.com/egor-zakharov/goph-keeper/internal/storage/authdata"
 )
 
 type service struct {
-	storage auth.Storage
+	storage authdata.Storage
 }
 
-func New(storage auth.Storage) Service {
+func New(storage authdata.Storage) Service {
 	return &service{storage: storage}
 }
 

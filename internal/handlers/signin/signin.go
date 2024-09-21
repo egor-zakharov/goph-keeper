@@ -22,7 +22,7 @@ func New(usersService users.Service) *Handler {
 	}
 }
 
-func (s *Handler) SignIn(ctx context.Context, in *pb.SignInRequest) (*pb.SignInResponse, error) {
+func (s *Handler) Handle(ctx context.Context, in *pb.SignInRequest) (*pb.SignInResponse, error) {
 	response := &pb.SignInResponse{}
 
 	user := models.User{
@@ -31,21 +31,21 @@ func (s *Handler) SignIn(ctx context.Context, in *pb.SignInRequest) (*pb.SignInR
 	}
 
 	if !user.IsValidLogin() || !user.IsValidPass() {
-		logger.Log().Sugar().Errorw("SignUp handler", "validation error")
+		logger.Log().Sugar().Errorw("Handle handler", "validation error")
 		return response, status.Errorf(codes.InvalidArgument, "Login or password should not be empty")
 	}
 
 	usr, err := s.usersService.Login(ctx, user)
 
 	if err != nil {
-		logger.Log().Sugar().Errorw("SignIn handler", "usersService login", err)
+		logger.Log().Sugar().Errorw("Handle handler", "usersService login", err)
 		return response, status.Errorf(codes.InvalidArgument, "Invalid login or password")
 	}
 
 	sessionID := uuid.New().String()
 	JWTToken, err := auth.BuildJWTString(usr.UserID, sessionID)
 	if err != nil {
-		logger.Log().Sugar().Errorw("SignIn handler", "build jwt", err)
+		logger.Log().Sugar().Errorw("Handle handler", "build jwt", err)
 		return response, status.Errorf(codes.Internal, "Can not build auth token")
 	}
 

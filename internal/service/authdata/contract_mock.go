@@ -2,7 +2,7 @@
 // Source: contract.go
 
 // Package auth is a generated GoMock package.
-package auth
+package authdata
 
 import (
 	context "context"

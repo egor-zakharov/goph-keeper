@@ -24,7 +24,7 @@ func New(usersService users.Service) *Handler {
 	}
 }
 
-func (h *Handler) SignUp(ctx context.Context, in *pb.SignUpRequest) (*pb.SignUpResponse, error) {
+func (h *Handler) Handle(ctx context.Context, in *pb.SignUpRequest) (*pb.SignUpResponse, error) {
 	response := &pb.SignUpResponse{}
 
 	user := models.User{
@@ -32,13 +32,13 @@ func (h *Handler) SignUp(ctx context.Context, in *pb.SignUpRequest) (*pb.SignUpR
 		Password: in.Password,
 	}
 	if !user.IsValidLogin() || !user.IsValidPass() {
-		logger.Log().Sugar().Errorw("SignUp handler", "validation error")
+		logger.Log().Sugar().Errorw("Handle handler", "validation error")
 		return response, status.Errorf(codes.InvalidArgument, "Login or password should not be empty")
 	}
 	createdUser, err := h.usersService.Register(ctx, user)
 
 	if errors.Is(err, usersStorage.ErrConflict) {
-		logger.Log().Sugar().Errorw("SignUp handler", "usersService register", err)
+		logger.Log().Sugar().Errorw("Handle handler", "usersService register", err)
 		return response, status.Errorf(codes.InvalidArgument, "User with such login already exists")
 	}
 
@@ -46,7 +46,7 @@ func (h *Handler) SignUp(ctx context.Context, in *pb.SignUpRequest) (*pb.SignUpR
 	JWTToken, err := auth.BuildJWTString(createdUser.UserID, sessionID)
 
 	if err != nil {
-		logger.Log().Sugar().Errorw("SignUp handler", "build jwt", err)
+		logger.Log().Sugar().Errorw("Handle handler", "build jwt", err)
 		return response, status.Errorf(codes.Internal, "Can not build auth token")
 	}
 

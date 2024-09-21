@@ -37,8 +37,8 @@ func (s *service) Register(ctx context.Context, userIn models.User) (*models.Use
 
 func (s *service) Login(ctx context.Context, userIn models.User) (*models.User, error) {
 	user, err := s.storage.Login(ctx, userIn.Login)
-	logger.Log().Sugar().Errorw("Service login user", "user storage login", err)
 	if err != nil {
+		logger.Log().Sugar().Errorw("Service login user", "user storage login", err)
 		return nil, err
 	}
 

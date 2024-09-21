@@ -4,18 +4,29 @@ import (
 	"context"
 	"database/sql"
 	"github.com/egor-zakharov/goph-keeper/internal/config"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/createauthdata"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/createcard"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/deleteauthdata"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/deletecard"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/getauthdata"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/getcards"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/signin"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/signup"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/subcribetochanges"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/updateauthdata"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/updatecard"
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
 	"github.com/egor-zakharov/goph-keeper/internal/middleware"
 	"github.com/egor-zakharov/goph-keeper/internal/migrator"
 	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/server"
-	authService "github.com/egor-zakharov/goph-keeper/internal/service/auth"
+	authService "github.com/egor-zakharov/goph-keeper/internal/service/authdata"
 	cardsService "github.com/egor-zakharov/goph-keeper/internal/service/cards"
+	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
 	usersService "github.com/egor-zakharov/goph-keeper/internal/service/users"
-	authStorage "github.com/egor-zakharov/goph-keeper/internal/storage/auth"
+	authStorage "github.com/egor-zakharov/goph-keeper/internal/storage/authdata"
 	cardsStorage "github.com/egor-zakharov/goph-keeper/internal/storage/cards"
+	sessionStorage "github.com/egor-zakharov/goph-keeper/internal/storage/session"
 	usersStorage "github.com/egor-zakharov/goph-keeper/internal/storage/users"
 	_ "github.com/jackc/pgx/v5/stdlib"
 	"go.uber.org/zap"
@@ -65,18 +76,43 @@ func main() {
 	usersStore := usersStorage.New(db)
 	cardsStore := cardsStorage.New(db)
 	authStore := authStorage.New(db)
+	session := sessionStorage.New()
 
 	//Service
 	usersService := usersService.New(usersStore)
 	cardsService := cardsService.New(cardsStore)
 	authService := authService.New(authStore)
+	notificationService := notification.New(session)
 
 	//Handlers
 	signUpHandler := signup.New(usersService)
 	signInHandler := signin.New(usersService)
+	createCardHandler := createcard.New(cardsService, notificationService)
+	getCardsHandler := getcards.New(cardsService)
+	updateCardHandler := updatecard.New(cardsService, notificationService)
+	deleteCardHandler := deletecard.New(cardsService, notificationService)
+	createAuthDataHandler := createauthdata.New(authService, notificationService)
+	getAuthDataHandler := getauthdata.New(authService)
+	updateAuthDataHandler := updateauthdata.New(authService, notificationService)
+	deleteAuthDataHandler := deleteauthdata.New(authService, notificationService)
+	subscribeToChandesHandler := subcribetochanges.New(notificationService)
 
 	//Server
-	keeperServer := server.New(cardsService, signUpHandler, signInHandler, authService)
+	keeperServer := server.New(
+		signUpHandler,
+		signInHandler,
+		createCardHandler,
+		authService,
+		notificationService,
+		getCardsHandler,
+		updateCardHandler,
+		deleteCardHandler,
+		createAuthDataHandler,
+		getAuthDataHandler,
+		updateAuthDataHandler,
+		deleteAuthDataHandler,
+		subscribeToChandesHandler,
+	)
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
 	defer stop()
