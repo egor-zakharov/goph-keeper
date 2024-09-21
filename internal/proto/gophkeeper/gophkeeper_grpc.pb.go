@@ -21,10 +21,18 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	GophKeeperServer_SignUp_FullMethodName             = "/proto.gophkeeper.GophKeeperServer/SignUp"
 	GophKeeperServer_SignIn_FullMethodName             = "/proto.gophkeeper.GophKeeperServer/SignIn"
+	GophKeeperServer_CreateAuthData_FullMethodName     = "/proto.gophkeeper.GophKeeperServer/CreateAuthData"
+	GophKeeperServer_GetAuthData_FullMethodName        = "/proto.gophkeeper.GophKeeperServer/GetAuthData"
+	GophKeeperServer_UpdateAuthData_FullMethodName     = "/proto.gophkeeper.GophKeeperServer/UpdateAuthData"
+	GophKeeperServer_DeleteAuthData_FullMethodName     = "/proto.gophkeeper.GophKeeperServer/DeleteAuthData"
 	GophKeeperServer_CreateCard_FullMethodName         = "/proto.gophkeeper.GophKeeperServer/CreateCard"
 	GophKeeperServer_GetCards_FullMethodName           = "/proto.gophkeeper.GophKeeperServer/GetCards"
 	GophKeeperServer_UpdateCard_FullMethodName         = "/proto.gophkeeper.GophKeeperServer/UpdateCard"
 	GophKeeperServer_DeleteCard_FullMethodName         = "/proto.gophkeeper.GophKeeperServer/DeleteCard"
+	GophKeeperServer_CreateConfTextData_FullMethodName = "/proto.gophkeeper.GophKeeperServer/CreateConfTextData"
+	GophKeeperServer_GetConfTextData_FullMethodName    = "/proto.gophkeeper.GophKeeperServer/GetConfTextData"
+	GophKeeperServer_UpdateConfTextData_FullMethodName = "/proto.gophkeeper.GophKeeperServer/UpdateConfTextData"
+	GophKeeperServer_DeleteConfTextData_FullMethodName = "/proto.gophkeeper.GophKeeperServer/DeleteConfTextData"
 	GophKeeperServer_SubscribeToChanges_FullMethodName = "/proto.gophkeeper.GophKeeperServer/SubscribeToChanges"
 )
 
@@ -36,16 +44,18 @@ const (
 type GophKeeperServerClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*SignUpResponse, error)
 	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
-	// rpc CreateCredentials(CreateCredentialsRequest) returns (CreateCredentialsResponse);
-	// rpc GetCredentials(GetCredentialsRequest) returns (GetCredentialsResponse);
-	// rpc UpdateCredentials(UpdateCredentialsRequest) returns (UpdateCredentialsResponse);
-	// rpc DeleteCredentials(DeleteCredentialsRequest) returns (DeleteCredentialsResponse);
+	CreateAuthData(ctx context.Context, in *CreateAuthDataRequest, opts ...grpc.CallOption) (*CreateAuthDataResponse, error)
+	GetAuthData(ctx context.Context, in *GetAuthDataRequest, opts ...grpc.CallOption) (*GetAuthDataResponse, error)
+	UpdateAuthData(ctx context.Context, in *UpdateAuthDataRequest, opts ...grpc.CallOption) (*UpdateAuthDataResponse, error)
+	DeleteAuthData(ctx context.Context, in *DeleteAuthDataRequest, opts ...grpc.CallOption) (*DeleteAuthDataResponse, error)
 	CreateCard(ctx context.Context, in *CreateCardRequest, opts ...grpc.CallOption) (*CreateCardResponse, error)
 	GetCards(ctx context.Context, in *GetCardsRequest, opts ...grpc.CallOption) (*GetCardsResponse, error)
 	UpdateCard(ctx context.Context, in *UpdateCardRequest, opts ...grpc.CallOption) (*UpdateCardResponse, error)
 	DeleteCard(ctx context.Context, in *DeleteCardRequest, opts ...grpc.CallOption) (*DeleteCardResponse, error)
-	// rpc GetFiles(GetFilesRequest) returns (GetFilesResponse);
-	// rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+	CreateConfTextData(ctx context.Context, in *CreateConfTextDataRequest, opts ...grpc.CallOption) (*CreateConfTextDataResponse, error)
+	GetConfTextData(ctx context.Context, in *GetConfTextDataRequest, opts ...grpc.CallOption) (*GetConfTextDataResponse, error)
+	UpdateConfTextData(ctx context.Context, in *UpdateConfTextDataRequest, opts ...grpc.CallOption) (*UpdateConfTextDataResponse, error)
+	DeleteConfTextData(ctx context.Context, in *DeleteConfTextDataRequest, opts ...grpc.CallOption) (*DeleteConfTextDataResponse, error)
 	SubscribeToChanges(ctx context.Context, in *SubscribeToChangesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SubscribeToChangesResponse], error)
 }
 
@@ -71,6 +81,46 @@ func (c *gophKeeperServerClient) SignIn(ctx context.Context, in *SignInRequest, 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SignInResponse)
 	err := c.cc.Invoke(ctx, GophKeeperServer_SignIn_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperServerClient) CreateAuthData(ctx context.Context, in *CreateAuthDataRequest, opts ...grpc.CallOption) (*CreateAuthDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateAuthDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperServer_CreateAuthData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperServerClient) GetAuthData(ctx context.Context, in *GetAuthDataRequest, opts ...grpc.CallOption) (*GetAuthDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAuthDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperServer_GetAuthData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperServerClient) UpdateAuthData(ctx context.Context, in *UpdateAuthDataRequest, opts ...grpc.CallOption) (*UpdateAuthDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateAuthDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperServer_UpdateAuthData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperServerClient) DeleteAuthData(ctx context.Context, in *DeleteAuthDataRequest, opts ...grpc.CallOption) (*DeleteAuthDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteAuthDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperServer_DeleteAuthData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -117,6 +167,46 @@ func (c *gophKeeperServerClient) DeleteCard(ctx context.Context, in *DeleteCardR
 	return out, nil
 }
 
+func (c *gophKeeperServerClient) CreateConfTextData(ctx context.Context, in *CreateConfTextDataRequest, opts ...grpc.CallOption) (*CreateConfTextDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateConfTextDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperServer_CreateConfTextData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperServerClient) GetConfTextData(ctx context.Context, in *GetConfTextDataRequest, opts ...grpc.CallOption) (*GetConfTextDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetConfTextDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperServer_GetConfTextData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperServerClient) UpdateConfTextData(ctx context.Context, in *UpdateConfTextDataRequest, opts ...grpc.CallOption) (*UpdateConfTextDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateConfTextDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperServer_UpdateConfTextData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gophKeeperServerClient) DeleteConfTextData(ctx context.Context, in *DeleteConfTextDataRequest, opts ...grpc.CallOption) (*DeleteConfTextDataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteConfTextDataResponse)
+	err := c.cc.Invoke(ctx, GophKeeperServer_DeleteConfTextData_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gophKeeperServerClient) SubscribeToChanges(ctx context.Context, in *SubscribeToChangesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SubscribeToChangesResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &GophKeeperServer_ServiceDesc.Streams[0], GophKeeperServer_SubscribeToChanges_FullMethodName, cOpts...)
@@ -144,16 +234,18 @@ type GophKeeperServer_SubscribeToChangesClient = grpc.ServerStreamingClient[Subs
 type GophKeeperServerServer interface {
 	SignUp(context.Context, *SignUpRequest) (*SignUpResponse, error)
 	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
-	// rpc CreateCredentials(CreateCredentialsRequest) returns (CreateCredentialsResponse);
-	// rpc GetCredentials(GetCredentialsRequest) returns (GetCredentialsResponse);
-	// rpc UpdateCredentials(UpdateCredentialsRequest) returns (UpdateCredentialsResponse);
-	// rpc DeleteCredentials(DeleteCredentialsRequest) returns (DeleteCredentialsResponse);
+	CreateAuthData(context.Context, *CreateAuthDataRequest) (*CreateAuthDataResponse, error)
+	GetAuthData(context.Context, *GetAuthDataRequest) (*GetAuthDataResponse, error)
+	UpdateAuthData(context.Context, *UpdateAuthDataRequest) (*UpdateAuthDataResponse, error)
+	DeleteAuthData(context.Context, *DeleteAuthDataRequest) (*DeleteAuthDataResponse, error)
 	CreateCard(context.Context, *CreateCardRequest) (*CreateCardResponse, error)
 	GetCards(context.Context, *GetCardsRequest) (*GetCardsResponse, error)
 	UpdateCard(context.Context, *UpdateCardRequest) (*UpdateCardResponse, error)
 	DeleteCard(context.Context, *DeleteCardRequest) (*DeleteCardResponse, error)
-	// rpc GetFiles(GetFilesRequest) returns (GetFilesResponse);
-	// rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+	CreateConfTextData(context.Context, *CreateConfTextDataRequest) (*CreateConfTextDataResponse, error)
+	GetConfTextData(context.Context, *GetConfTextDataRequest) (*GetConfTextDataResponse, error)
+	UpdateConfTextData(context.Context, *UpdateConfTextDataRequest) (*UpdateConfTextDataResponse, error)
+	DeleteConfTextData(context.Context, *DeleteConfTextDataRequest) (*DeleteConfTextDataResponse, error)
 	SubscribeToChanges(*SubscribeToChangesRequest, grpc.ServerStreamingServer[SubscribeToChangesResponse]) error
 	mustEmbedUnimplementedGophKeeperServerServer()
 }
@@ -171,6 +263,18 @@ func (UnimplementedGophKeeperServerServer) SignUp(context.Context, *SignUpReques
 func (UnimplementedGophKeeperServerServer) SignIn(context.Context, *SignInRequest) (*SignInResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
 }
+func (UnimplementedGophKeeperServerServer) CreateAuthData(context.Context, *CreateAuthDataRequest) (*CreateAuthDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateAuthData not implemented")
+}
+func (UnimplementedGophKeeperServerServer) GetAuthData(context.Context, *GetAuthDataRequest) (*GetAuthDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthData not implemented")
+}
+func (UnimplementedGophKeeperServerServer) UpdateAuthData(context.Context, *UpdateAuthDataRequest) (*UpdateAuthDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAuthData not implemented")
+}
+func (UnimplementedGophKeeperServerServer) DeleteAuthData(context.Context, *DeleteAuthDataRequest) (*DeleteAuthDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAuthData not implemented")
+}
 func (UnimplementedGophKeeperServerServer) CreateCard(context.Context, *CreateCardRequest) (*CreateCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCard not implemented")
 }
@@ -182,6 +286,18 @@ func (UnimplementedGophKeeperServerServer) UpdateCard(context.Context, *UpdateCa
 }
 func (UnimplementedGophKeeperServerServer) DeleteCard(context.Context, *DeleteCardRequest) (*DeleteCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCard not implemented")
+}
+func (UnimplementedGophKeeperServerServer) CreateConfTextData(context.Context, *CreateConfTextDataRequest) (*CreateConfTextDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateConfTextData not implemented")
+}
+func (UnimplementedGophKeeperServerServer) GetConfTextData(context.Context, *GetConfTextDataRequest) (*GetConfTextDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetConfTextData not implemented")
+}
+func (UnimplementedGophKeeperServerServer) UpdateConfTextData(context.Context, *UpdateConfTextDataRequest) (*UpdateConfTextDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateConfTextData not implemented")
+}
+func (UnimplementedGophKeeperServerServer) DeleteConfTextData(context.Context, *DeleteConfTextDataRequest) (*DeleteConfTextDataResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteConfTextData not implemented")
 }
 func (UnimplementedGophKeeperServerServer) SubscribeToChanges(*SubscribeToChangesRequest, grpc.ServerStreamingServer[SubscribeToChangesResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method SubscribeToChanges not implemented")
@@ -239,6 +355,78 @@ func _GophKeeperServer_SignIn_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GophKeeperServerServer).SignIn(ctx, req.(*SignInRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperServer_CreateAuthData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAuthDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperServerServer).CreateAuthData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperServer_CreateAuthData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperServerServer).CreateAuthData(ctx, req.(*CreateAuthDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperServer_GetAuthData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAuthDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperServerServer).GetAuthData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperServer_GetAuthData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperServerServer).GetAuthData(ctx, req.(*GetAuthDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperServer_UpdateAuthData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAuthDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperServerServer).UpdateAuthData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperServer_UpdateAuthData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperServerServer).UpdateAuthData(ctx, req.(*UpdateAuthDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperServer_DeleteAuthData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAuthDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperServerServer).DeleteAuthData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperServer_DeleteAuthData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperServerServer).DeleteAuthData(ctx, req.(*DeleteAuthDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -315,6 +503,78 @@ func _GophKeeperServer_DeleteCard_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GophKeeperServer_CreateConfTextData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateConfTextDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperServerServer).CreateConfTextData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperServer_CreateConfTextData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperServerServer).CreateConfTextData(ctx, req.(*CreateConfTextDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperServer_GetConfTextData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetConfTextDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperServerServer).GetConfTextData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperServer_GetConfTextData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperServerServer).GetConfTextData(ctx, req.(*GetConfTextDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperServer_UpdateConfTextData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateConfTextDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperServerServer).UpdateConfTextData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperServer_UpdateConfTextData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperServerServer).UpdateConfTextData(ctx, req.(*UpdateConfTextDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GophKeeperServer_DeleteConfTextData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteConfTextDataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GophKeeperServerServer).DeleteConfTextData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GophKeeperServer_DeleteConfTextData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GophKeeperServerServer).DeleteConfTextData(ctx, req.(*DeleteConfTextDataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GophKeeperServer_SubscribeToChanges_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(SubscribeToChangesRequest)
 	if err := stream.RecvMsg(m); err != nil {
@@ -342,6 +602,22 @@ var GophKeeperServer_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _GophKeeperServer_SignIn_Handler,
 		},
 		{
+			MethodName: "CreateAuthData",
+			Handler:    _GophKeeperServer_CreateAuthData_Handler,
+		},
+		{
+			MethodName: "GetAuthData",
+			Handler:    _GophKeeperServer_GetAuthData_Handler,
+		},
+		{
+			MethodName: "UpdateAuthData",
+			Handler:    _GophKeeperServer_UpdateAuthData_Handler,
+		},
+		{
+			MethodName: "DeleteAuthData",
+			Handler:    _GophKeeperServer_DeleteAuthData_Handler,
+		},
+		{
 			MethodName: "CreateCard",
 			Handler:    _GophKeeperServer_CreateCard_Handler,
 		},
@@ -356,6 +632,22 @@ var GophKeeperServer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteCard",
 			Handler:    _GophKeeperServer_DeleteCard_Handler,
+		},
+		{
+			MethodName: "CreateConfTextData",
+			Handler:    _GophKeeperServer_CreateConfTextData_Handler,
+		},
+		{
+			MethodName: "GetConfTextData",
+			Handler:    _GophKeeperServer_GetConfTextData_Handler,
+		},
+		{
+			MethodName: "UpdateConfTextData",
+			Handler:    _GophKeeperServer_UpdateConfTextData_Handler,
+		},
+		{
+			MethodName: "DeleteConfTextData",
+			Handler:    _GophKeeperServer_DeleteConfTextData_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

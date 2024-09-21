@@ -1,16 +1,15 @@
-package handler
+package server
 
 import (
 	"context"
-	"errors"
 	"github.com/egor-zakharov/goph-keeper/internal/auth"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/signin"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/signup"
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
 	"github.com/egor-zakharov/goph-keeper/internal/models"
 	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
+	authService "github.com/egor-zakharov/goph-keeper/internal/service/auth"
 	"github.com/egor-zakharov/goph-keeper/internal/service/cards"
-	"github.com/egor-zakharov/goph-keeper/internal/service/users"
-	usersStorage "github.com/egor-zakharov/goph-keeper/internal/storage/users"
-	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"sync"
@@ -19,80 +18,30 @@ import (
 
 type GophKeeperServer struct {
 	pb.UnimplementedGophKeeperServerServer
-	usersService users.Service
+	signUp       *signup.Handler
+	signIn       *signin.Handler
 	cardsService cards.Service
+	authService  authService.Service
 	syncClients  map[string]map[string]pb.GophKeeperServer_SubscribeToChangesServer
 	rwMutex      sync.RWMutex
 }
 
-func New(service users.Service, cardsService cards.Service) *GophKeeperServer {
+func New(cardsService cards.Service, signUp *signup.Handler, signIn *signin.Handler, authService authService.Service) *GophKeeperServer {
 	return &GophKeeperServer{
-		usersService: service,
 		cardsService: cardsService,
+		signUp:       signUp,
+		signIn:       signIn,
+		authService:  authService,
 		syncClients:  make(map[string]map[string]pb.GophKeeperServer_SubscribeToChangesServer),
 	}
 }
 
 func (s *GophKeeperServer) SignUp(ctx context.Context, in *pb.SignUpRequest) (*pb.SignUpResponse, error) {
-	response := &pb.SignUpResponse{}
-
-	user := models.User{
-		Login:    in.Login,
-		Password: in.Password,
-	}
-	if !user.IsValidLogin() || !user.IsValidPass() {
-		logger.Log().Sugar().Errorw("SignUp handler", "validation error")
-		return response, status.Errorf(codes.InvalidArgument, "Login or password should not be empty")
-	}
-	createdUser, err := s.usersService.Register(ctx, user)
-
-	if errors.Is(err, usersStorage.ErrConflict) {
-		logger.Log().Sugar().Errorw("SignUp handler", "usersService register", err)
-		return response, status.Errorf(codes.InvalidArgument, "User with such login already exists")
-	}
-
-	sessionID := uuid.New().String()
-	JWTToken, err := auth.BuildJWTString(createdUser.UserID, sessionID)
-
-	if err != nil {
-		logger.Log().Sugar().Errorw("SignUp handler", "build jwt", err)
-		return response, status.Errorf(codes.Internal, "Can not build auth token")
-	}
-
-	response.Token = JWTToken
-	return response, nil
-
+	return s.signUp.SignUp(ctx, in)
 }
 
 func (s *GophKeeperServer) SignIn(ctx context.Context, in *pb.SignInRequest) (*pb.SignInResponse, error) {
-	response := &pb.SignInResponse{}
-
-	user := models.User{
-		Login:    in.Login,
-		Password: in.Password,
-	}
-
-	if !user.IsValidLogin() || !user.IsValidPass() {
-		logger.Log().Sugar().Errorw("SignUp handler", "validation error")
-		return response, status.Errorf(codes.InvalidArgument, "Login or password should not be empty")
-	}
-
-	usr, err := s.usersService.Login(ctx, user)
-
-	if err != nil {
-		logger.Log().Sugar().Errorw("SignIn handler", "usersService login", err)
-		return response, status.Errorf(codes.InvalidArgument, "Invalid login or password")
-	}
-
-	sessionID := uuid.New().String()
-	JWTToken, err := auth.BuildJWTString(usr.UserID, sessionID)
-	if err != nil {
-		logger.Log().Sugar().Errorw("SignIn handler", "build jwt", err)
-		return response, status.Errorf(codes.Internal, "Can not build auth token")
-	}
-
-	response.Token = JWTToken
-	return response, nil
+	return s.signIn.SignIn(ctx, in)
 }
 
 func (s *GophKeeperServer) CreateCard(ctx context.Context, in *pb.CreateCardRequest) (*pb.CreateCardResponse, error) {
@@ -181,6 +130,77 @@ func (s *GophKeeperServer) DeleteCard(ctx context.Context, in *pb.DeleteCardRequ
 	}
 	s.sendNotifications(ctx, "card", "delete", in.Id)
 	return &pb.DeleteCardResponse{Result: true}, err
+}
+
+func (s *GophKeeperServer) CreateAuthData(ctx context.Context, in *pb.CreateAuthDataRequest) (*pb.CreateAuthDataResponse, error) {
+	response := &pb.CreateAuthDataResponse{}
+	userID := ctx.Value(auth.UserIdContextKey).(string)
+	if in.Data == nil {
+		return nil, nil
+	}
+	authData := models.AuthData{
+		Meta:     in.Data.Meta,
+		Login:    in.Data.Login,
+		Password: in.Data.Password,
+	}
+	data, err := s.authService.Create(ctx, authData, userID)
+	if err != nil {
+		return nil, err
+	}
+	response.Id = data.ID
+	s.sendNotifications(ctx, authData.Meta, "create", response.Id)
+	return response, nil
+}
+
+func (s *GophKeeperServer) GetAuthData(ctx context.Context, in *pb.GetAuthDataRequest) (*pb.GetAuthDataResponse, error) {
+	response := &pb.GetAuthDataResponse{}
+	userID := ctx.Value(auth.UserIdContextKey).(string)
+
+	data, err := s.authService.Read(ctx, userID)
+	if err != nil {
+		return nil, err
+	}
+
+	for _, item := range *data {
+		response.Data = append(response.Data, &pb.GetAuthDataResponse_Data{
+			Id:       item.ID,
+			Meta:     item.Meta,
+			Login:    item.Login,
+			Password: item.Password,
+		})
+	}
+	return response, nil
+}
+
+func (s *GophKeeperServer) UpdateAuthData(ctx context.Context, in *pb.UpdateAuthDataRequest) (*pb.UpdateAuthDataResponse, error) {
+	if in.Data == nil {
+		return nil, nil
+	}
+
+	userID := ctx.Value(auth.UserIdContextKey).(string)
+	data := models.AuthData{
+		ID:       in.Data.Id,
+		Meta:     in.Data.Meta,
+		Login:    in.Data.Login,
+		Password: in.Data.Password,
+	}
+	_, err := s.authService.Update(ctx, data, userID)
+	if err != nil {
+		return nil, err
+	}
+	s.sendNotifications(ctx, in.Data.Meta, "update", in.Data.Id)
+
+	return &pb.UpdateAuthDataResponse{Result: true}, nil
+}
+
+func (s *GophKeeperServer) DeleteAuthData(ctx context.Context, in *pb.DeleteAuthDataRequest) (*pb.DeleteAuthDataResponse, error) {
+	userID := ctx.Value(auth.UserIdContextKey).(string)
+	err := s.authService.Delete(ctx, in.Id, userID)
+	if err != nil {
+		return &pb.DeleteAuthDataResponse{Result: false}, err
+	}
+	s.sendNotifications(ctx, "authData", "delete", in.Id)
+	return &pb.DeleteAuthDataResponse{Result: true}, err
 }
 
 // SubscribeToChanges - stream changes to clients

@@ -591,6 +591,740 @@ func (x *DeleteCardResponse) GetResult() bool {
 	return false
 }
 
+type CreateAuthDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data *CreateAuthDataRequest_Data `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *CreateAuthDataRequest) Reset() {
+	*x = CreateAuthDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateAuthDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAuthDataRequest) ProtoMessage() {}
+
+func (x *CreateAuthDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAuthDataRequest.ProtoReflect.Descriptor instead.
+func (*CreateAuthDataRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *CreateAuthDataRequest) GetData() *CreateAuthDataRequest_Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type CreateAuthDataResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *CreateAuthDataResponse) Reset() {
+	*x = CreateAuthDataResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateAuthDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAuthDataResponse) ProtoMessage() {}
+
+func (x *CreateAuthDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAuthDataResponse.ProtoReflect.Descriptor instead.
+func (*CreateAuthDataResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *CreateAuthDataResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetAuthDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *GetAuthDataRequest) Reset() {
+	*x = GetAuthDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAuthDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAuthDataRequest) ProtoMessage() {}
+
+func (x *GetAuthDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAuthDataRequest.ProtoReflect.Descriptor instead.
+func (*GetAuthDataRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{14}
+}
+
+type GetAuthDataResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data []*GetAuthDataResponse_Data `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetAuthDataResponse) Reset() {
+	*x = GetAuthDataResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAuthDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAuthDataResponse) ProtoMessage() {}
+
+func (x *GetAuthDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAuthDataResponse.ProtoReflect.Descriptor instead.
+func (*GetAuthDataResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetAuthDataResponse) GetData() []*GetAuthDataResponse_Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type UpdateAuthDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data *UpdateAuthDataRequest_Data `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *UpdateAuthDataRequest) Reset() {
+	*x = UpdateAuthDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateAuthDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAuthDataRequest) ProtoMessage() {}
+
+func (x *UpdateAuthDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAuthDataRequest.ProtoReflect.Descriptor instead.
+func (*UpdateAuthDataRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *UpdateAuthDataRequest) GetData() *UpdateAuthDataRequest_Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type UpdateAuthDataResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Result bool `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *UpdateAuthDataResponse) Reset() {
+	*x = UpdateAuthDataResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateAuthDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAuthDataResponse) ProtoMessage() {}
+
+func (x *UpdateAuthDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAuthDataResponse.ProtoReflect.Descriptor instead.
+func (*UpdateAuthDataResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *UpdateAuthDataResponse) GetResult() bool {
+	if x != nil {
+		return x.Result
+	}
+	return false
+}
+
+type DeleteAuthDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *DeleteAuthDataRequest) Reset() {
+	*x = DeleteAuthDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteAuthDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteAuthDataRequest) ProtoMessage() {}
+
+func (x *DeleteAuthDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteAuthDataRequest.ProtoReflect.Descriptor instead.
+func (*DeleteAuthDataRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *DeleteAuthDataRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteAuthDataResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Result bool `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *DeleteAuthDataResponse) Reset() {
+	*x = DeleteAuthDataResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteAuthDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteAuthDataResponse) ProtoMessage() {}
+
+func (x *DeleteAuthDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteAuthDataResponse.ProtoReflect.Descriptor instead.
+func (*DeleteAuthDataResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *DeleteAuthDataResponse) GetResult() bool {
+	if x != nil {
+		return x.Result
+	}
+	return false
+}
+
+type CreateConfTextDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data *CreateConfTextDataRequest_Data `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *CreateConfTextDataRequest) Reset() {
+	*x = CreateConfTextDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateConfTextDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateConfTextDataRequest) ProtoMessage() {}
+
+func (x *CreateConfTextDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateConfTextDataRequest.ProtoReflect.Descriptor instead.
+func (*CreateConfTextDataRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *CreateConfTextDataRequest) GetData() *CreateConfTextDataRequest_Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type CreateConfTextDataResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *CreateConfTextDataResponse) Reset() {
+	*x = CreateConfTextDataResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateConfTextDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateConfTextDataResponse) ProtoMessage() {}
+
+func (x *CreateConfTextDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateConfTextDataResponse.ProtoReflect.Descriptor instead.
+func (*CreateConfTextDataResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *CreateConfTextDataResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetConfTextDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *GetConfTextDataRequest) Reset() {
+	*x = GetConfTextDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetConfTextDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetConfTextDataRequest) ProtoMessage() {}
+
+func (x *GetConfTextDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetConfTextDataRequest.ProtoReflect.Descriptor instead.
+func (*GetConfTextDataRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{22}
+}
+
+type GetConfTextDataResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data []*GetConfTextDataResponse_Data `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetConfTextDataResponse) Reset() {
+	*x = GetConfTextDataResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetConfTextDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetConfTextDataResponse) ProtoMessage() {}
+
+func (x *GetConfTextDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetConfTextDataResponse.ProtoReflect.Descriptor instead.
+func (*GetConfTextDataResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetConfTextDataResponse) GetData() []*GetConfTextDataResponse_Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type UpdateConfTextDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data *UpdateConfTextDataRequest_Data `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *UpdateConfTextDataRequest) Reset() {
+	*x = UpdateConfTextDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateConfTextDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateConfTextDataRequest) ProtoMessage() {}
+
+func (x *UpdateConfTextDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateConfTextDataRequest.ProtoReflect.Descriptor instead.
+func (*UpdateConfTextDataRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *UpdateConfTextDataRequest) GetData() *UpdateConfTextDataRequest_Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type UpdateConfTextDataResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Result bool `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *UpdateConfTextDataResponse) Reset() {
+	*x = UpdateConfTextDataResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateConfTextDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateConfTextDataResponse) ProtoMessage() {}
+
+func (x *UpdateConfTextDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateConfTextDataResponse.ProtoReflect.Descriptor instead.
+func (*UpdateConfTextDataResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *UpdateConfTextDataResponse) GetResult() bool {
+	if x != nil {
+		return x.Result
+	}
+	return false
+}
+
+type DeleteConfTextDataRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *DeleteConfTextDataRequest) Reset() {
+	*x = DeleteConfTextDataRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteConfTextDataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteConfTextDataRequest) ProtoMessage() {}
+
+func (x *DeleteConfTextDataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteConfTextDataRequest.ProtoReflect.Descriptor instead.
+func (*DeleteConfTextDataRequest) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *DeleteConfTextDataRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteConfTextDataResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Result bool `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *DeleteConfTextDataResponse) Reset() {
+	*x = DeleteConfTextDataResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteConfTextDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteConfTextDataResponse) ProtoMessage() {}
+
+func (x *DeleteConfTextDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteConfTextDataResponse.ProtoReflect.Descriptor instead.
+func (*DeleteConfTextDataResponse) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *DeleteConfTextDataResponse) GetResult() bool {
+	if x != nil {
+		return x.Result
+	}
+	return false
+}
+
 type SubscribeToChangesRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -600,7 +1334,7 @@ type SubscribeToChangesRequest struct {
 func (x *SubscribeToChangesRequest) Reset() {
 	*x = SubscribeToChangesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[12]
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -613,7 +1347,7 @@ func (x *SubscribeToChangesRequest) String() string {
 func (*SubscribeToChangesRequest) ProtoMessage() {}
 
 func (x *SubscribeToChangesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[12]
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -626,7 +1360,7 @@ func (x *SubscribeToChangesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscribeToChangesRequest.ProtoReflect.Descriptor instead.
 func (*SubscribeToChangesRequest) Descriptor() ([]byte, []int) {
-	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{12}
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{28}
 }
 
 type SubscribeToChangesResponse struct {
@@ -642,7 +1376,7 @@ type SubscribeToChangesResponse struct {
 func (x *SubscribeToChangesResponse) Reset() {
 	*x = SubscribeToChangesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[13]
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -655,7 +1389,7 @@ func (x *SubscribeToChangesResponse) String() string {
 func (*SubscribeToChangesResponse) ProtoMessage() {}
 
 func (x *SubscribeToChangesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[13]
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -668,7 +1402,7 @@ func (x *SubscribeToChangesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SubscribeToChangesResponse.ProtoReflect.Descriptor instead.
 func (*SubscribeToChangesResponse) Descriptor() ([]byte, []int) {
-	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{13}
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *SubscribeToChangesResponse) GetProduct() string {
@@ -706,7 +1440,7 @@ type CreateCardRequest_Card struct {
 func (x *CreateCardRequest_Card) Reset() {
 	*x = CreateCardRequest_Card{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[14]
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -719,7 +1453,7 @@ func (x *CreateCardRequest_Card) String() string {
 func (*CreateCardRequest_Card) ProtoMessage() {}
 
 func (x *CreateCardRequest_Card) ProtoReflect() protoreflect.Message {
-	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[14]
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -778,7 +1512,7 @@ type GetCardsResponse_Card struct {
 func (x *GetCardsResponse_Card) Reset() {
 	*x = GetCardsResponse_Card{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[15]
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -791,7 +1525,7 @@ func (x *GetCardsResponse_Card) String() string {
 func (*GetCardsResponse_Card) ProtoMessage() {}
 
 func (x *GetCardsResponse_Card) ProtoReflect() protoreflect.Message {
-	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[15]
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -857,7 +1591,7 @@ type UpdateCardRequest_Card struct {
 func (x *UpdateCardRequest_Card) Reset() {
 	*x = UpdateCardRequest_Card{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[16]
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -870,7 +1604,7 @@ func (x *UpdateCardRequest_Card) String() string {
 func (*UpdateCardRequest_Card) ProtoMessage() {}
 
 func (x *UpdateCardRequest_Card) ProtoReflect() protoreflect.Message {
-	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[16]
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -917,6 +1651,392 @@ func (x *UpdateCardRequest_Card) GetHolderName() string {
 func (x *UpdateCardRequest_Card) GetCvv() string {
 	if x != nil {
 		return x.Cvv
+	}
+	return ""
+}
+
+type CreateAuthDataRequest_Data struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Meta     string `protobuf:"bytes,1,opt,name=meta,proto3" json:"meta,omitempty"`
+	Login    string `protobuf:"bytes,2,opt,name=login,proto3" json:"login,omitempty"`
+	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *CreateAuthDataRequest_Data) Reset() {
+	*x = CreateAuthDataRequest_Data{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateAuthDataRequest_Data) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAuthDataRequest_Data) ProtoMessage() {}
+
+func (x *CreateAuthDataRequest_Data) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAuthDataRequest_Data.ProtoReflect.Descriptor instead.
+func (*CreateAuthDataRequest_Data) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{12, 0}
+}
+
+func (x *CreateAuthDataRequest_Data) GetMeta() string {
+	if x != nil {
+		return x.Meta
+	}
+	return ""
+}
+
+func (x *CreateAuthDataRequest_Data) GetLogin() string {
+	if x != nil {
+		return x.Login
+	}
+	return ""
+}
+
+func (x *CreateAuthDataRequest_Data) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type GetAuthDataResponse_Data struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id       string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Meta     string `protobuf:"bytes,2,opt,name=meta,proto3" json:"meta,omitempty"`
+	Login    string `protobuf:"bytes,3,opt,name=login,proto3" json:"login,omitempty"`
+	Password string `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *GetAuthDataResponse_Data) Reset() {
+	*x = GetAuthDataResponse_Data{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[34]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetAuthDataResponse_Data) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAuthDataResponse_Data) ProtoMessage() {}
+
+func (x *GetAuthDataResponse_Data) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[34]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAuthDataResponse_Data.ProtoReflect.Descriptor instead.
+func (*GetAuthDataResponse_Data) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{15, 0}
+}
+
+func (x *GetAuthDataResponse_Data) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *GetAuthDataResponse_Data) GetMeta() string {
+	if x != nil {
+		return x.Meta
+	}
+	return ""
+}
+
+func (x *GetAuthDataResponse_Data) GetLogin() string {
+	if x != nil {
+		return x.Login
+	}
+	return ""
+}
+
+func (x *GetAuthDataResponse_Data) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type UpdateAuthDataRequest_Data struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id       string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Meta     string `protobuf:"bytes,2,opt,name=meta,proto3" json:"meta,omitempty"`
+	Login    string `protobuf:"bytes,3,opt,name=login,proto3" json:"login,omitempty"`
+	Password string `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *UpdateAuthDataRequest_Data) Reset() {
+	*x = UpdateAuthDataRequest_Data{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[35]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateAuthDataRequest_Data) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAuthDataRequest_Data) ProtoMessage() {}
+
+func (x *UpdateAuthDataRequest_Data) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[35]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAuthDataRequest_Data.ProtoReflect.Descriptor instead.
+func (*UpdateAuthDataRequest_Data) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{16, 0}
+}
+
+func (x *UpdateAuthDataRequest_Data) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateAuthDataRequest_Data) GetMeta() string {
+	if x != nil {
+		return x.Meta
+	}
+	return ""
+}
+
+func (x *UpdateAuthDataRequest_Data) GetLogin() string {
+	if x != nil {
+		return x.Login
+	}
+	return ""
+}
+
+func (x *UpdateAuthDataRequest_Data) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type CreateConfTextDataRequest_Data struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Meta string `protobuf:"bytes,1,opt,name=meta,proto3" json:"meta,omitempty"`
+	Text string `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
+}
+
+func (x *CreateConfTextDataRequest_Data) Reset() {
+	*x = CreateConfTextDataRequest_Data{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[36]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateConfTextDataRequest_Data) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateConfTextDataRequest_Data) ProtoMessage() {}
+
+func (x *CreateConfTextDataRequest_Data) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[36]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateConfTextDataRequest_Data.ProtoReflect.Descriptor instead.
+func (*CreateConfTextDataRequest_Data) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{20, 0}
+}
+
+func (x *CreateConfTextDataRequest_Data) GetMeta() string {
+	if x != nil {
+		return x.Meta
+	}
+	return ""
+}
+
+func (x *CreateConfTextDataRequest_Data) GetText() string {
+	if x != nil {
+		return x.Text
+	}
+	return ""
+}
+
+type GetConfTextDataResponse_Data struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id   string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Meta string `protobuf:"bytes,2,opt,name=meta,proto3" json:"meta,omitempty"`
+	Text string `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`
+}
+
+func (x *GetConfTextDataResponse_Data) Reset() {
+	*x = GetConfTextDataResponse_Data{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[37]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetConfTextDataResponse_Data) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetConfTextDataResponse_Data) ProtoMessage() {}
+
+func (x *GetConfTextDataResponse_Data) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[37]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetConfTextDataResponse_Data.ProtoReflect.Descriptor instead.
+func (*GetConfTextDataResponse_Data) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{23, 0}
+}
+
+func (x *GetConfTextDataResponse_Data) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *GetConfTextDataResponse_Data) GetMeta() string {
+	if x != nil {
+		return x.Meta
+	}
+	return ""
+}
+
+func (x *GetConfTextDataResponse_Data) GetText() string {
+	if x != nil {
+		return x.Text
+	}
+	return ""
+}
+
+type UpdateConfTextDataRequest_Data struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id   string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Meta string `protobuf:"bytes,2,opt,name=meta,proto3" json:"meta,omitempty"`
+	Text string `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`
+}
+
+func (x *UpdateConfTextDataRequest_Data) Reset() {
+	*x = UpdateConfTextDataRequest_Data{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[38]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateConfTextDataRequest_Data) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateConfTextDataRequest_Data) ProtoMessage() {}
+
+func (x *UpdateConfTextDataRequest_Data) ProtoReflect() protoreflect.Message {
+	mi := &file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[38]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateConfTextDataRequest_Data.ProtoReflect.Descriptor instead.
+func (*UpdateConfTextDataRequest_Data) Descriptor() ([]byte, []int) {
+	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP(), []int{24, 0}
+}
+
+func (x *UpdateConfTextDataRequest_Data) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateConfTextDataRequest_Data) GetMeta() string {
+	if x != nil {
+		return x.Meta
+	}
+	return ""
+}
+
+func (x *UpdateConfTextDataRequest_Data) GetText() string {
+	if x != nil {
+		return x.Text
 	}
 	return ""
 }
@@ -994,6 +2114,96 @@ var file_pkg_proto_gophkeeper_gophkeeper_proto_rawDesc = []byte{
 	0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x2c, 0x0a, 0x12, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43,
 	0x61, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72,
 	0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65, 0x73,
+	0x75, 0x6c, 0x74, 0x22, 0xa7, 0x01, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x75,
+	0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x40, 0x0a,
+	0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a,
+	0x4c, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x12, 0x0a, 0x04, 0x6d, 0x65, 0x74, 0x61, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6d, 0x65, 0x74, 0x61, 0x12, 0x14, 0x0a, 0x05, 0x6c,
+	0x6f, 0x67, 0x69, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x6f, 0x67, 0x69,
+	0x6e, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x28, 0x0a,
+	0x16, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x14, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x41, 0x75,
+	0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0xb3, 0x01,
+	0x0a, 0x13, 0x47, 0x65, 0x74, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3e, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x2a, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68,
+	0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61,
+	0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x52,
+	0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x5c, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a,
+	0x04, 0x6d, 0x65, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6d, 0x65, 0x74,
+	0x61, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x6f, 0x67, 0x69, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x6c, 0x6f, 0x67, 0x69, 0x6e, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77,
+	0x6f, 0x72, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77,
+	0x6f, 0x72, 0x64, 0x22, 0xb7, 0x01, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75,
+	0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x40, 0x0a,
+	0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a,
+	0x5c, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6d, 0x65, 0x74, 0x61, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6d, 0x65, 0x74, 0x61, 0x12, 0x14, 0x0a, 0x05, 0x6c,
+	0x6f, 0x67, 0x69, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6c, 0x6f, 0x67, 0x69,
+	0x6e, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x30, 0x0a,
+	0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22,
+	0x27, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74,
+	0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x30, 0x0a, 0x16, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x08, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x91, 0x01, 0x0a, 0x19, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74,
+	0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x44, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x30, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67,
+	0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x2e,
+	0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x12, 0x0a, 0x04, 0x6d, 0x65, 0x74, 0x61, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6d, 0x65, 0x74, 0x61, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65,
+	0x78, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x22, 0x2c,
+	0x0a, 0x1a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74,
+	0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x18, 0x0a, 0x16,
+	0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x9d, 0x01, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x43, 0x6f,
+	0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x42, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x2e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65,
+	0x70, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44,
+	0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x44, 0x61, 0x74, 0x61,
+	0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x3e, 0x0a, 0x04, 0x44, 0x61, 0x74, 0x61, 0x12, 0x0e,
+	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12,
+	0x0a, 0x04, 0x6d, 0x65, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6d, 0x65,
+	0x74, 0x61, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x22, 0xa1, 0x01, 0x0a, 0x19, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x44, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x30, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b,
+	0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66,
+	0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x2e,
+	0x44, 0x61, 0x74, 0x61, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x3e, 0x0a, 0x04, 0x44, 0x61,
+	0x74, 0x61, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
+	0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6d, 0x65, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x6d, 0x65, 0x74, 0x61, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x65, 0x78, 0x74, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x65, 0x78, 0x74, 0x22, 0x34, 0x0a, 0x1a, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75,
+	0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74,
+	0x22, 0x2b, 0x0a, 0x19, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65,
+	0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x34, 0x0a,
+	0x1a, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44,
+	0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72,
+	0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x72, 0x65, 0x73,
 	0x75, 0x6c, 0x74, 0x22, 0x1b, 0x0a, 0x19, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65,
 	0x54, 0x6f, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x22, 0x5e, 0x0a, 0x1a, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x54, 0x6f, 0x43,
@@ -1002,7 +2212,7 @@ var file_pkg_proto_gophkeeper_gophkeeper_proto_rawDesc = []byte{
 	0x07, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x63, 0x74, 0x69,
 	0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e,
 	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64,
-	0x32, 0xfd, 0x04, 0x0a, 0x10, 0x47, 0x6f, 0x70, 0x68, 0x4b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x53,
+	0x32, 0xc3, 0x0b, 0x0a, 0x10, 0x47, 0x6f, 0x70, 0x68, 0x4b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x53,
 	0x65, 0x72, 0x76, 0x65, 0x72, 0x12, 0x4b, 0x0a, 0x06, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x12,
 	0x1f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70,
 	0x65, 0x72, 0x2e, 0x53, 0x69, 0x67, 0x6e, 0x55, 0x70, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
@@ -1013,38 +2223,90 @@ var file_pkg_proto_gophkeeper_gophkeeper_proto_rawDesc = []byte{
 	0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72,
 	0x2e, 0x53, 0x69, 0x67, 0x6e, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x57, 0x0a, 0x0a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x12, 0x23, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72,
-	0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b,
-	0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x51, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x43,
-	0x61, 0x72, 0x64, 0x73, 0x12, 0x21, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70,
-	0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x64, 0x73,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
-	0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x61,
-	0x72, 0x64, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x57, 0x0a, 0x0a, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x12, 0x23, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65,
-	0x72, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x57, 0x0a, 0x0a, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61,
-	0x72, 0x64, 0x12, 0x23, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b,
-	0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
+	0x63, 0x0a, 0x0e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74,
+	0x61, 0x12, 0x27, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65,
+	0x65, 0x70, 0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44,
+	0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x41, 0x75, 0x74, 0x68, 0x44,
+	0x61, 0x74, 0x61, 0x12, 0x24, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68,
+	0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61,
+	0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74,
+	0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x63, 0x0a, 0x0e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61,
+	0x74, 0x61, 0x12, 0x27, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b,
+	0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68,
+	0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x63, 0x0a, 0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41,
+	0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x12, 0x27, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
 	0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x71, 0x0a,
-	0x12, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x54, 0x6f, 0x43, 0x68, 0x61, 0x6e,
-	0x67, 0x65, 0x73, 0x12, 0x2b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68,
-	0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65,
-	0x54, 0x6f, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x2c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65,
-	0x70, 0x65, 0x72, 0x2e, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x54, 0x6f, 0x43,
-	0x68, 0x61, 0x6e, 0x67, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01,
-	0x42, 0x1b, 0x5a, 0x19, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x2f, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x28, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65,
+	0x70, 0x65, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x44, 0x61,
+	0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x57, 0x0a, 0x0a, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x12, 0x23, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72,
+	0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x51, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x64, 0x73, 0x12,
+	0x21, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70,
+	0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x64, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x22, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b,
+	0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x61, 0x72, 0x64, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x57, 0x0a, 0x0a, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x43, 0x61, 0x72, 0x64, 0x12, 0x23, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70,
+	0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x61,
+	0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x57, 0x0a, 0x0a, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x12, 0x23, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72,
+	0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x24, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b,
+	0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x72, 0x64,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6f, 0x0a, 0x12, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2b,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65,
+	0x72, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74,
+	0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74,
+	0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x66, 0x0a, 0x0f, 0x47, 0x65, 0x74,
+	0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x28, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e,
+	0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67,
+	0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x6e,
+	0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x6f, 0x0a, 0x12, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54,
+	0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e,
+	0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f, 0x70,
+	0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x43, 0x6f,
+	0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x6f, 0x0a, 0x12, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66,
+	0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x12, 0x2b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x43, 0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67, 0x6f,
+	0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43,
+	0x6f, 0x6e, 0x66, 0x54, 0x65, 0x78, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x71, 0x0a, 0x12, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65,
+	0x54, 0x6f, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x73, 0x12, 0x2b, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2e, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x53, 0x75, 0x62,
+	0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x54, 0x6f, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2e, 0x67,
+	0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65, 0x70, 0x65, 0x72, 0x2e, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72,
+	0x69, 0x62, 0x65, 0x54, 0x6f, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x42, 0x1b, 0x5a, 0x19, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e,
+	0x61, 0x6c, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x70, 0x68, 0x6b, 0x65, 0x65,
+	0x70, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1059,49 +2321,93 @@ func file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescGZIP() []byte {
 	return file_pkg_proto_gophkeeper_gophkeeper_proto_rawDescData
 }
 
-var file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes = make([]protoimpl.MessageInfo, 39)
 var file_pkg_proto_gophkeeper_gophkeeper_proto_goTypes = []any{
-	(*SignUpRequest)(nil),              // 0: proto.gophkeeper.SignUpRequest
-	(*SignUpResponse)(nil),             // 1: proto.gophkeeper.SignUpResponse
-	(*SignInRequest)(nil),              // 2: proto.gophkeeper.SignInRequest
-	(*SignInResponse)(nil),             // 3: proto.gophkeeper.SignInResponse
-	(*CreateCardRequest)(nil),          // 4: proto.gophkeeper.CreateCardRequest
-	(*CreateCardResponse)(nil),         // 5: proto.gophkeeper.CreateCardResponse
-	(*GetCardsRequest)(nil),            // 6: proto.gophkeeper.GetCardsRequest
-	(*GetCardsResponse)(nil),           // 7: proto.gophkeeper.GetCardsResponse
-	(*UpdateCardRequest)(nil),          // 8: proto.gophkeeper.UpdateCardRequest
-	(*UpdateCardResponse)(nil),         // 9: proto.gophkeeper.UpdateCardResponse
-	(*DeleteCardRequest)(nil),          // 10: proto.gophkeeper.DeleteCardRequest
-	(*DeleteCardResponse)(nil),         // 11: proto.gophkeeper.DeleteCardResponse
-	(*SubscribeToChangesRequest)(nil),  // 12: proto.gophkeeper.SubscribeToChangesRequest
-	(*SubscribeToChangesResponse)(nil), // 13: proto.gophkeeper.SubscribeToChangesResponse
-	(*CreateCardRequest_Card)(nil),     // 14: proto.gophkeeper.CreateCardRequest.Card
-	(*GetCardsResponse_Card)(nil),      // 15: proto.gophkeeper.GetCardsResponse.Card
-	(*UpdateCardRequest_Card)(nil),     // 16: proto.gophkeeper.UpdateCardRequest.Card
+	(*SignUpRequest)(nil),                  // 0: proto.gophkeeper.SignUpRequest
+	(*SignUpResponse)(nil),                 // 1: proto.gophkeeper.SignUpResponse
+	(*SignInRequest)(nil),                  // 2: proto.gophkeeper.SignInRequest
+	(*SignInResponse)(nil),                 // 3: proto.gophkeeper.SignInResponse
+	(*CreateCardRequest)(nil),              // 4: proto.gophkeeper.CreateCardRequest
+	(*CreateCardResponse)(nil),             // 5: proto.gophkeeper.CreateCardResponse
+	(*GetCardsRequest)(nil),                // 6: proto.gophkeeper.GetCardsRequest
+	(*GetCardsResponse)(nil),               // 7: proto.gophkeeper.GetCardsResponse
+	(*UpdateCardRequest)(nil),              // 8: proto.gophkeeper.UpdateCardRequest
+	(*UpdateCardResponse)(nil),             // 9: proto.gophkeeper.UpdateCardResponse
+	(*DeleteCardRequest)(nil),              // 10: proto.gophkeeper.DeleteCardRequest
+	(*DeleteCardResponse)(nil),             // 11: proto.gophkeeper.DeleteCardResponse
+	(*CreateAuthDataRequest)(nil),          // 12: proto.gophkeeper.CreateAuthDataRequest
+	(*CreateAuthDataResponse)(nil),         // 13: proto.gophkeeper.CreateAuthDataResponse
+	(*GetAuthDataRequest)(nil),             // 14: proto.gophkeeper.GetAuthDataRequest
+	(*GetAuthDataResponse)(nil),            // 15: proto.gophkeeper.GetAuthDataResponse
+	(*UpdateAuthDataRequest)(nil),          // 16: proto.gophkeeper.UpdateAuthDataRequest
+	(*UpdateAuthDataResponse)(nil),         // 17: proto.gophkeeper.UpdateAuthDataResponse
+	(*DeleteAuthDataRequest)(nil),          // 18: proto.gophkeeper.DeleteAuthDataRequest
+	(*DeleteAuthDataResponse)(nil),         // 19: proto.gophkeeper.DeleteAuthDataResponse
+	(*CreateConfTextDataRequest)(nil),      // 20: proto.gophkeeper.CreateConfTextDataRequest
+	(*CreateConfTextDataResponse)(nil),     // 21: proto.gophkeeper.CreateConfTextDataResponse
+	(*GetConfTextDataRequest)(nil),         // 22: proto.gophkeeper.GetConfTextDataRequest
+	(*GetConfTextDataResponse)(nil),        // 23: proto.gophkeeper.GetConfTextDataResponse
+	(*UpdateConfTextDataRequest)(nil),      // 24: proto.gophkeeper.UpdateConfTextDataRequest
+	(*UpdateConfTextDataResponse)(nil),     // 25: proto.gophkeeper.UpdateConfTextDataResponse
+	(*DeleteConfTextDataRequest)(nil),      // 26: proto.gophkeeper.DeleteConfTextDataRequest
+	(*DeleteConfTextDataResponse)(nil),     // 27: proto.gophkeeper.DeleteConfTextDataResponse
+	(*SubscribeToChangesRequest)(nil),      // 28: proto.gophkeeper.SubscribeToChangesRequest
+	(*SubscribeToChangesResponse)(nil),     // 29: proto.gophkeeper.SubscribeToChangesResponse
+	(*CreateCardRequest_Card)(nil),         // 30: proto.gophkeeper.CreateCardRequest.Card
+	(*GetCardsResponse_Card)(nil),          // 31: proto.gophkeeper.GetCardsResponse.Card
+	(*UpdateCardRequest_Card)(nil),         // 32: proto.gophkeeper.UpdateCardRequest.Card
+	(*CreateAuthDataRequest_Data)(nil),     // 33: proto.gophkeeper.CreateAuthDataRequest.Data
+	(*GetAuthDataResponse_Data)(nil),       // 34: proto.gophkeeper.GetAuthDataResponse.Data
+	(*UpdateAuthDataRequest_Data)(nil),     // 35: proto.gophkeeper.UpdateAuthDataRequest.Data
+	(*CreateConfTextDataRequest_Data)(nil), // 36: proto.gophkeeper.CreateConfTextDataRequest.Data
+	(*GetConfTextDataResponse_Data)(nil),   // 37: proto.gophkeeper.GetConfTextDataResponse.Data
+	(*UpdateConfTextDataRequest_Data)(nil), // 38: proto.gophkeeper.UpdateConfTextDataRequest.Data
 }
 var file_pkg_proto_gophkeeper_gophkeeper_proto_depIdxs = []int32{
-	14, // 0: proto.gophkeeper.CreateCardRequest.card:type_name -> proto.gophkeeper.CreateCardRequest.Card
-	15, // 1: proto.gophkeeper.GetCardsResponse.cards:type_name -> proto.gophkeeper.GetCardsResponse.Card
-	16, // 2: proto.gophkeeper.UpdateCardRequest.card:type_name -> proto.gophkeeper.UpdateCardRequest.Card
-	0,  // 3: proto.gophkeeper.GophKeeperServer.SignUp:input_type -> proto.gophkeeper.SignUpRequest
-	2,  // 4: proto.gophkeeper.GophKeeperServer.SignIn:input_type -> proto.gophkeeper.SignInRequest
-	4,  // 5: proto.gophkeeper.GophKeeperServer.CreateCard:input_type -> proto.gophkeeper.CreateCardRequest
-	6,  // 6: proto.gophkeeper.GophKeeperServer.GetCards:input_type -> proto.gophkeeper.GetCardsRequest
-	8,  // 7: proto.gophkeeper.GophKeeperServer.UpdateCard:input_type -> proto.gophkeeper.UpdateCardRequest
-	10, // 8: proto.gophkeeper.GophKeeperServer.DeleteCard:input_type -> proto.gophkeeper.DeleteCardRequest
-	12, // 9: proto.gophkeeper.GophKeeperServer.SubscribeToChanges:input_type -> proto.gophkeeper.SubscribeToChangesRequest
-	1,  // 10: proto.gophkeeper.GophKeeperServer.SignUp:output_type -> proto.gophkeeper.SignUpResponse
-	3,  // 11: proto.gophkeeper.GophKeeperServer.SignIn:output_type -> proto.gophkeeper.SignInResponse
-	5,  // 12: proto.gophkeeper.GophKeeperServer.CreateCard:output_type -> proto.gophkeeper.CreateCardResponse
-	7,  // 13: proto.gophkeeper.GophKeeperServer.GetCards:output_type -> proto.gophkeeper.GetCardsResponse
-	9,  // 14: proto.gophkeeper.GophKeeperServer.UpdateCard:output_type -> proto.gophkeeper.UpdateCardResponse
-	11, // 15: proto.gophkeeper.GophKeeperServer.DeleteCard:output_type -> proto.gophkeeper.DeleteCardResponse
-	13, // 16: proto.gophkeeper.GophKeeperServer.SubscribeToChanges:output_type -> proto.gophkeeper.SubscribeToChangesResponse
-	10, // [10:17] is the sub-list for method output_type
-	3,  // [3:10] is the sub-list for method input_type
-	3,  // [3:3] is the sub-list for extension type_name
-	3,  // [3:3] is the sub-list for extension extendee
-	0,  // [0:3] is the sub-list for field type_name
+	30, // 0: proto.gophkeeper.CreateCardRequest.card:type_name -> proto.gophkeeper.CreateCardRequest.Card
+	31, // 1: proto.gophkeeper.GetCardsResponse.cards:type_name -> proto.gophkeeper.GetCardsResponse.Card
+	32, // 2: proto.gophkeeper.UpdateCardRequest.card:type_name -> proto.gophkeeper.UpdateCardRequest.Card
+	33, // 3: proto.gophkeeper.CreateAuthDataRequest.data:type_name -> proto.gophkeeper.CreateAuthDataRequest.Data
+	34, // 4: proto.gophkeeper.GetAuthDataResponse.data:type_name -> proto.gophkeeper.GetAuthDataResponse.Data
+	35, // 5: proto.gophkeeper.UpdateAuthDataRequest.data:type_name -> proto.gophkeeper.UpdateAuthDataRequest.Data
+	36, // 6: proto.gophkeeper.CreateConfTextDataRequest.data:type_name -> proto.gophkeeper.CreateConfTextDataRequest.Data
+	37, // 7: proto.gophkeeper.GetConfTextDataResponse.data:type_name -> proto.gophkeeper.GetConfTextDataResponse.Data
+	38, // 8: proto.gophkeeper.UpdateConfTextDataRequest.data:type_name -> proto.gophkeeper.UpdateConfTextDataRequest.Data
+	0,  // 9: proto.gophkeeper.GophKeeperServer.SignUp:input_type -> proto.gophkeeper.SignUpRequest
+	2,  // 10: proto.gophkeeper.GophKeeperServer.SignIn:input_type -> proto.gophkeeper.SignInRequest
+	12, // 11: proto.gophkeeper.GophKeeperServer.CreateAuthData:input_type -> proto.gophkeeper.CreateAuthDataRequest
+	14, // 12: proto.gophkeeper.GophKeeperServer.GetAuthData:input_type -> proto.gophkeeper.GetAuthDataRequest
+	16, // 13: proto.gophkeeper.GophKeeperServer.UpdateAuthData:input_type -> proto.gophkeeper.UpdateAuthDataRequest
+	18, // 14: proto.gophkeeper.GophKeeperServer.DeleteAuthData:input_type -> proto.gophkeeper.DeleteAuthDataRequest
+	4,  // 15: proto.gophkeeper.GophKeeperServer.CreateCard:input_type -> proto.gophkeeper.CreateCardRequest
+	6,  // 16: proto.gophkeeper.GophKeeperServer.GetCards:input_type -> proto.gophkeeper.GetCardsRequest
+	8,  // 17: proto.gophkeeper.GophKeeperServer.UpdateCard:input_type -> proto.gophkeeper.UpdateCardRequest
+	10, // 18: proto.gophkeeper.GophKeeperServer.DeleteCard:input_type -> proto.gophkeeper.DeleteCardRequest
+	20, // 19: proto.gophkeeper.GophKeeperServer.CreateConfTextData:input_type -> proto.gophkeeper.CreateConfTextDataRequest
+	22, // 20: proto.gophkeeper.GophKeeperServer.GetConfTextData:input_type -> proto.gophkeeper.GetConfTextDataRequest
+	24, // 21: proto.gophkeeper.GophKeeperServer.UpdateConfTextData:input_type -> proto.gophkeeper.UpdateConfTextDataRequest
+	26, // 22: proto.gophkeeper.GophKeeperServer.DeleteConfTextData:input_type -> proto.gophkeeper.DeleteConfTextDataRequest
+	28, // 23: proto.gophkeeper.GophKeeperServer.SubscribeToChanges:input_type -> proto.gophkeeper.SubscribeToChangesRequest
+	1,  // 24: proto.gophkeeper.GophKeeperServer.SignUp:output_type -> proto.gophkeeper.SignUpResponse
+	3,  // 25: proto.gophkeeper.GophKeeperServer.SignIn:output_type -> proto.gophkeeper.SignInResponse
+	13, // 26: proto.gophkeeper.GophKeeperServer.CreateAuthData:output_type -> proto.gophkeeper.CreateAuthDataResponse
+	15, // 27: proto.gophkeeper.GophKeeperServer.GetAuthData:output_type -> proto.gophkeeper.GetAuthDataResponse
+	17, // 28: proto.gophkeeper.GophKeeperServer.UpdateAuthData:output_type -> proto.gophkeeper.UpdateAuthDataResponse
+	19, // 29: proto.gophkeeper.GophKeeperServer.DeleteAuthData:output_type -> proto.gophkeeper.DeleteAuthDataResponse
+	5,  // 30: proto.gophkeeper.GophKeeperServer.CreateCard:output_type -> proto.gophkeeper.CreateCardResponse
+	7,  // 31: proto.gophkeeper.GophKeeperServer.GetCards:output_type -> proto.gophkeeper.GetCardsResponse
+	9,  // 32: proto.gophkeeper.GophKeeperServer.UpdateCard:output_type -> proto.gophkeeper.UpdateCardResponse
+	11, // 33: proto.gophkeeper.GophKeeperServer.DeleteCard:output_type -> proto.gophkeeper.DeleteCardResponse
+	21, // 34: proto.gophkeeper.GophKeeperServer.CreateConfTextData:output_type -> proto.gophkeeper.CreateConfTextDataResponse
+	23, // 35: proto.gophkeeper.GophKeeperServer.GetConfTextData:output_type -> proto.gophkeeper.GetConfTextDataResponse
+	25, // 36: proto.gophkeeper.GophKeeperServer.UpdateConfTextData:output_type -> proto.gophkeeper.UpdateConfTextDataResponse
+	27, // 37: proto.gophkeeper.GophKeeperServer.DeleteConfTextData:output_type -> proto.gophkeeper.DeleteConfTextDataResponse
+	29, // 38: proto.gophkeeper.GophKeeperServer.SubscribeToChanges:output_type -> proto.gophkeeper.SubscribeToChangesResponse
+	24, // [24:39] is the sub-list for method output_type
+	9,  // [9:24] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_pkg_proto_gophkeeper_gophkeeper_proto_init() }
@@ -1255,7 +2561,7 @@ func file_pkg_proto_gophkeeper_gophkeeper_proto_init() {
 			}
 		}
 		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[12].Exporter = func(v any, i int) any {
-			switch v := v.(*SubscribeToChangesRequest); i {
+			switch v := v.(*CreateAuthDataRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1267,7 +2573,7 @@ func file_pkg_proto_gophkeeper_gophkeeper_proto_init() {
 			}
 		}
 		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[13].Exporter = func(v any, i int) any {
-			switch v := v.(*SubscribeToChangesResponse); i {
+			switch v := v.(*CreateAuthDataResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1279,7 +2585,7 @@ func file_pkg_proto_gophkeeper_gophkeeper_proto_init() {
 			}
 		}
 		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[14].Exporter = func(v any, i int) any {
-			switch v := v.(*CreateCardRequest_Card); i {
+			switch v := v.(*GetAuthDataRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1291,7 +2597,7 @@ func file_pkg_proto_gophkeeper_gophkeeper_proto_init() {
 			}
 		}
 		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[15].Exporter = func(v any, i int) any {
-			switch v := v.(*GetCardsResponse_Card); i {
+			switch v := v.(*GetAuthDataResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1303,7 +2609,271 @@ func file_pkg_proto_gophkeeper_gophkeeper_proto_init() {
 			}
 		}
 		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[16].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateAuthDataRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[17].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateAuthDataResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[18].Exporter = func(v any, i int) any {
+			switch v := v.(*DeleteAuthDataRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[19].Exporter = func(v any, i int) any {
+			switch v := v.(*DeleteAuthDataResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[20].Exporter = func(v any, i int) any {
+			switch v := v.(*CreateConfTextDataRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[21].Exporter = func(v any, i int) any {
+			switch v := v.(*CreateConfTextDataResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[22].Exporter = func(v any, i int) any {
+			switch v := v.(*GetConfTextDataRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[23].Exporter = func(v any, i int) any {
+			switch v := v.(*GetConfTextDataResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[24].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateConfTextDataRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[25].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateConfTextDataResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[26].Exporter = func(v any, i int) any {
+			switch v := v.(*DeleteConfTextDataRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[27].Exporter = func(v any, i int) any {
+			switch v := v.(*DeleteConfTextDataResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[28].Exporter = func(v any, i int) any {
+			switch v := v.(*SubscribeToChangesRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[29].Exporter = func(v any, i int) any {
+			switch v := v.(*SubscribeToChangesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[30].Exporter = func(v any, i int) any {
+			switch v := v.(*CreateCardRequest_Card); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[31].Exporter = func(v any, i int) any {
+			switch v := v.(*GetCardsResponse_Card); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[32].Exporter = func(v any, i int) any {
 			switch v := v.(*UpdateCardRequest_Card); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[33].Exporter = func(v any, i int) any {
+			switch v := v.(*CreateAuthDataRequest_Data); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[34].Exporter = func(v any, i int) any {
+			switch v := v.(*GetAuthDataResponse_Data); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[35].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateAuthDataRequest_Data); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[36].Exporter = func(v any, i int) any {
+			switch v := v.(*CreateConfTextDataRequest_Data); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[37].Exporter = func(v any, i int) any {
+			switch v := v.(*GetConfTextDataResponse_Data); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pkg_proto_gophkeeper_gophkeeper_proto_msgTypes[38].Exporter = func(v any, i int) any {
+			switch v := v.(*UpdateConfTextDataRequest_Data); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1321,7 +2891,7 @@ func file_pkg_proto_gophkeeper_gophkeeper_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pkg_proto_gophkeeper_gophkeeper_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   39,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

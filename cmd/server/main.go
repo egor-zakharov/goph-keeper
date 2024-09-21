@@ -4,13 +4,17 @@ import (
 	"context"
 	"database/sql"
 	"github.com/egor-zakharov/goph-keeper/internal/config"
-	"github.com/egor-zakharov/goph-keeper/internal/handler"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/signin"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/signup"
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
 	"github.com/egor-zakharov/goph-keeper/internal/middleware"
 	"github.com/egor-zakharov/goph-keeper/internal/migrator"
 	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
+	"github.com/egor-zakharov/goph-keeper/internal/server"
+	authService "github.com/egor-zakharov/goph-keeper/internal/service/auth"
 	cardsService "github.com/egor-zakharov/goph-keeper/internal/service/cards"
 	usersService "github.com/egor-zakharov/goph-keeper/internal/service/users"
+	authStorage "github.com/egor-zakharov/goph-keeper/internal/storage/auth"
 	cardsStorage "github.com/egor-zakharov/goph-keeper/internal/storage/cards"
 	usersStorage "github.com/egor-zakharov/goph-keeper/internal/storage/users"
 	_ "github.com/jackc/pgx/v5/stdlib"
@@ -60,13 +64,19 @@ func main() {
 	//Storages
 	usersStore := usersStorage.New(db)
 	cardsStore := cardsStorage.New(db)
+	authStore := authStorage.New(db)
 
 	//Service
 	usersService := usersService.New(usersStore)
 	cardsService := cardsService.New(cardsStore)
+	authService := authService.New(authStore)
+
+	//Handlers
+	signUpHandler := signup.New(usersService)
+	signInHandler := signin.New(usersService)
 
 	//Server
-	grpcHandlers := handler.New(usersService, cardsService)
+	keeperServer := server.New(cardsService, signUpHandler, signInHandler, authService)
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
 	defer stop()
@@ -79,11 +89,11 @@ func main() {
 			grpc.UnaryInterceptor(middleware.AuthInterceptor),
 			grpc.MaxConcurrentStreams(20),
 			grpc.StreamInterceptor(middleware.StreamAuthInterceptor))
-		pb.RegisterGophKeeperServerServer(s, grpcHandlers)
+		pb.RegisterGophKeeperServerServer(s, keeperServer)
 		reflection.Register(s)
 
 		err = s.Serve(listen)
-		logger.Log().Sugar().Infow("Running grpc server", "address", conf.FlagRunGRPCAddr)
+		logger.Log().Sugar().Infow("Running grpc keeperServer", "address", conf.FlagRunGRPCAddr)
 		if err != nil {
 			panic(err)
 		}

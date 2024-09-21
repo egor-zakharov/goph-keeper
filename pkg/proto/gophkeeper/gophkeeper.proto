@@ -10,20 +10,26 @@ service GophKeeperServer{
   rpc SignUp(SignUpRequest) returns (SignUpResponse);
   rpc SignIn(SignInRequest) returns (SignInResponse);
 
-  //  rpc CreateCredentials(CreateCredentialsRequest) returns (CreateCredentialsResponse);
-  //  rpc GetCredentials(GetCredentialsRequest) returns (GetCredentialsResponse);
-  //  rpc UpdateCredentials(UpdateCredentialsRequest) returns (UpdateCredentialsResponse);
-  //  rpc DeleteCredentials(DeleteCredentialsRequest) returns (DeleteCredentialsResponse);
-  //
+  rpc CreateAuthData(CreateAuthDataRequest) returns (CreateAuthDataResponse);
+  rpc GetAuthData(GetAuthDataRequest) returns (GetAuthDataResponse);
+  rpc UpdateAuthData(UpdateAuthDataRequest) returns (UpdateAuthDataResponse);
+  rpc DeleteAuthData(DeleteAuthDataRequest) returns (DeleteAuthDataResponse);
+
   rpc CreateCard(CreateCardRequest) returns (CreateCardResponse);
   rpc GetCards(GetCardsRequest) returns (GetCardsResponse);
   rpc UpdateCard(UpdateCardRequest) returns (UpdateCardResponse);
   rpc DeleteCard(DeleteCardRequest) returns (DeleteCardResponse);
-  //
-  //  rpc GetFiles(GetFilesRequest) returns (GetFilesResponse);
-  //  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+
+  rpc CreateConfTextData(CreateConfTextDataRequest) returns (CreateConfTextDataResponse);
+  rpc GetConfTextData(GetConfTextDataRequest) returns (GetConfTextDataResponse);
+  rpc UpdateConfTextData(UpdateConfTextDataRequest) returns (UpdateConfTextDataResponse);
+  rpc DeleteConfTextData(DeleteConfTextDataRequest) returns (DeleteConfTextDataResponse);
+
   //
   rpc SubscribeToChanges(SubscribeToChangesRequest) returns (stream SubscribeToChangesResponse);
+
+  //  rpc GetFiles(GetFilesRequest) returns (GetFilesResponse);
+  //  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
   //  rpc UploadFile(stream UploadFileRequest) returns (stream UploadFileResponse);
   //  rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse);
 }
@@ -45,54 +51,6 @@ message SignInRequest {
 message SignInResponse {
   string token = 1;
 }
-
-//message CreateCredentialsRequest {
-//  string service_name = 1 [ (buf.validate.field).string.min_len = 1 ];
-//  string identity = 2 [ (buf.validate.field).string.min_len = 1 ];
-//  string password = 3 [ (buf.validate.field).string.min_len = 1 ];
-//}
-//
-//message CreateCredentialsResponse {
-//  string id = 1 [ (buf.validate.field).string.uuid = true ];
-//  string service_name = 2;
-//  string uploaded_at = 3;
-//}
-//
-//message GetCredentialsRequest {
-//}
-//
-//message GetCredentialsResponse {
-//  message Credential {
-//    string id = 1 [ (buf.validate.field).string.uuid = true ];
-//    string service_name = 2;
-//    string identity = 3;
-//    string password = 4;
-//    string uploaded_at = 5;
-//  }
-//  repeated Credential credentials = 1;
-//}
-//
-//message UpdateCredentialsRequest {
-//  string id = 1 [ (buf.validate.field).string.uuid = true ];
-//  string service_name = 2 [ (buf.validate.field).string.min_len = 1 ];
-//  string identity = 3 [ (buf.validate.field).string.min_len = 1 ];
-//  string password = 4 [ (buf.validate.field).string.min_len = 1 ];
-//}
-//
-//message UpdateCredentialsResponse {
-//  string id = 1 [ (buf.validate.field).string.uuid = true ];
-//  string service_name = 2;
-//  string uploaded_at = 3;
-//}
-//
-//message DeleteCredentialsRequest {
-//  string id = 1 [ (buf.validate.field).string.uuid = true ];
-//}
-//
-//message DeleteCredentialsResponse {
-//}
-//
-
 
 message CreateCardRequest {
   message Card {
@@ -143,6 +101,99 @@ message DeleteCardRequest {
 }
 
 message DeleteCardResponse {
+  bool result = 1;
+}
+
+message CreateAuthDataRequest {
+  message Data {
+    string meta = 1;
+    string login = 2;
+    string password = 3;
+  }
+  Data data = 1;
+}
+
+message CreateAuthDataResponse {
+  string id = 1 ;
+}
+
+message GetAuthDataRequest {
+}
+
+message GetAuthDataResponse {
+  message Data {
+    string id = 1 ;
+    string meta = 2;
+    string login = 3;
+    string password = 4;
+  }
+  repeated Data data = 1;
+}
+
+message UpdateAuthDataRequest {
+  message Data {
+    string id = 1 ;
+    string meta = 2;
+    string login = 3;
+    string password = 4;
+  }
+  Data data = 1;
+}
+
+message UpdateAuthDataResponse {
+  bool result = 1;
+}
+
+message DeleteAuthDataRequest {
+  string id = 1 ;
+}
+
+message DeleteAuthDataResponse {
+  bool result = 1;
+}
+
+message CreateConfTextDataRequest {
+  message Data {
+    string meta = 1;
+    string text = 2;
+  }
+  Data data = 1;
+}
+
+message CreateConfTextDataResponse {
+  string id = 1 ;
+}
+
+message GetConfTextDataRequest {
+}
+
+message GetConfTextDataResponse {
+  message Data {
+    string id = 1 ;
+    string meta = 2;
+    string text = 3;
+  }
+  repeated Data data = 1;
+}
+
+message UpdateConfTextDataRequest {
+  message Data {
+    string id = 1 ;
+    string meta = 2;
+    string text = 3;
+  }
+  Data data = 1;
+}
+
+message UpdateConfTextDataResponse {
+  bool result = 1;
+}
+
+message DeleteConfTextDataRequest {
+  string id = 1 ;
+}
+
+message DeleteConfTextDataResponse {
   bool result = 1;
 }
 
