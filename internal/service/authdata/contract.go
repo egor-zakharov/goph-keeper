@@ -6,7 +6,7 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/models"
 )
 
-//go:generate mockgen -source=contract.go -destination=contract_mock.go -package=auth
+//go:generate mockgen -source=contract.go -destination=contract_mock.go -package=authdata
 
 var ErrIncorrectData = errors.New("data incorrect")
 

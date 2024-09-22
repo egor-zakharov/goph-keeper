@@ -4,15 +4,19 @@ import (
 	"context"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/createauthdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/createcard"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/createtextdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/deleteauthdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/deletecard"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/deletetextdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/getauthdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/getcards"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/gettextdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/signin"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/signup"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/subcribetochanges"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/updateauthdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/updatecard"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/updatetextdata"
 	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	authService "github.com/egor-zakharov/goph-keeper/internal/service/authdata"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
@@ -33,6 +37,11 @@ type GophKeeperServer struct {
 	getAuthData    *getauthdata.Handler
 	updateAuthData *updateauthdata.Handler
 	deleteAuthData *deleteauthdata.Handler
+
+	createTextData *createtextdata.Handler
+	getTextData    *gettextdata.Handler
+	updateTextData *updatetextdata.Handler
+	deleteTextData *deletetextdata.Handler
 
 	subscribe *subcribetochanges.Handler
 
@@ -55,6 +64,10 @@ func New(
 	updateAuthData *updateauthdata.Handler,
 	deleteAuthData *deleteauthdata.Handler,
 	subscribe *subcribetochanges.Handler,
+	createTextData *createtextdata.Handler,
+	getTextData *gettextdata.Handler,
+	updateTextData *updatetextdata.Handler,
+	deleteTextData *deletetextdata.Handler,
 ) *GophKeeperServer {
 	return &GophKeeperServer{
 		signUp:         signUp,
@@ -70,6 +83,10 @@ func New(
 		updateAuthData: updateAuthData,
 		deleteAuthData: deleteAuthData,
 		subscribe:      subscribe,
+		createTextData: createTextData,
+		getTextData:    getTextData,
+		updateTextData: updateTextData,
+		deleteTextData: deleteTextData,
 	}
 }
 
@@ -90,7 +107,7 @@ func (s *GophKeeperServer) GetCards(ctx context.Context, in *pb.GetCardsRequest)
 }
 
 func (s *GophKeeperServer) UpdateCard(ctx context.Context, in *pb.UpdateCardRequest) (*pb.UpdateCardResponse, error) {
-	return s.updateCards.UpdateCard(ctx, in)
+	return s.updateCards.Handle(ctx, in)
 }
 
 func (s *GophKeeperServer) DeleteCard(ctx context.Context, in *pb.DeleteCardRequest) (*pb.DeleteCardResponse, error) {
@@ -106,11 +123,27 @@ func (s *GophKeeperServer) GetAuthData(ctx context.Context, in *pb.GetAuthDataRe
 }
 
 func (s *GophKeeperServer) UpdateAuthData(ctx context.Context, in *pb.UpdateAuthDataRequest) (*pb.UpdateAuthDataResponse, error) {
-	return s.updateAuthData.UpdateAuthData(ctx, in)
+	return s.updateAuthData.Handle(ctx, in)
 }
 
 func (s *GophKeeperServer) DeleteAuthData(ctx context.Context, in *pb.DeleteAuthDataRequest) (*pb.DeleteAuthDataResponse, error) {
 	return s.deleteAuthData.Handle(ctx, in)
+}
+
+func (s *GophKeeperServer) CreateConfTextData(ctx context.Context, in *pb.CreateConfTextDataRequest) (*pb.CreateConfTextDataResponse, error) {
+	return s.createTextData.Handle(ctx, in)
+}
+
+func (s *GophKeeperServer) GetConfTextData(ctx context.Context, in *pb.GetConfTextDataRequest) (*pb.GetConfTextDataResponse, error) {
+	return s.getTextData.Handle(ctx, in)
+}
+
+func (s *GophKeeperServer) UpdateConfTextData(ctx context.Context, in *pb.UpdateConfTextDataRequest) (*pb.UpdateConfTextDataResponse, error) {
+	return s.updateTextData.Handle(ctx, in)
+}
+
+func (s *GophKeeperServer) DeleteConfTextData(ctx context.Context, in *pb.DeleteConfTextDataRequest) (*pb.DeleteConfTextDataResponse, error) {
+	return s.deleteTextData.Handle(ctx, in)
 }
 
 func (s *GophKeeperServer) SubscribeToChanges(in *pb.SubscribeToChangesRequest, stream pb.GophKeeperServer_SubscribeToChangesServer) error {

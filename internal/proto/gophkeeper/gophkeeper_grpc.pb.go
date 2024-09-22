@@ -23,11 +23,11 @@ const (
 	GophKeeperServer_SignIn_FullMethodName             = "/proto.gophkeeper.GophKeeperServer/SignIn"
 	GophKeeperServer_CreateAuthData_FullMethodName     = "/proto.gophkeeper.GophKeeperServer/CreateAuthData"
 	GophKeeperServer_GetAuthData_FullMethodName        = "/proto.gophkeeper.GophKeeperServer/GetAuthData"
-	GophKeeperServer_UpdateAuthData_FullMethodName     = "/proto.gophkeeper.GophKeeperServer/UpdateAuthData"
+	GophKeeperServer_UpdateAuthData_FullMethodName     = "/proto.gophkeeper.GophKeeperServer/Handle"
 	GophKeeperServer_DeleteAuthData_FullMethodName     = "/proto.gophkeeper.GophKeeperServer/DeleteAuthData"
 	GophKeeperServer_CreateCard_FullMethodName         = "/proto.gophkeeper.GophKeeperServer/CreateCard"
 	GophKeeperServer_GetCards_FullMethodName           = "/proto.gophkeeper.GophKeeperServer/GetCards"
-	GophKeeperServer_UpdateCard_FullMethodName         = "/proto.gophkeeper.GophKeeperServer/UpdateCard"
+	GophKeeperServer_UpdateCard_FullMethodName         = "/proto.gophkeeper.GophKeeperServer/Handle"
 	GophKeeperServer_DeleteCard_FullMethodName         = "/proto.gophkeeper.GophKeeperServer/DeleteCard"
 	GophKeeperServer_CreateConfTextData_FullMethodName = "/proto.gophkeeper.GophKeeperServer/CreateConfTextData"
 	GophKeeperServer_GetConfTextData_FullMethodName    = "/proto.gophkeeper.GophKeeperServer/GetConfTextData"
@@ -270,7 +270,7 @@ func (UnimplementedGophKeeperServerServer) GetAuthData(context.Context, *GetAuth
 	return nil, status.Errorf(codes.Unimplemented, "method GetAuthData not implemented")
 }
 func (UnimplementedGophKeeperServerServer) UpdateAuthData(context.Context, *UpdateAuthDataRequest) (*UpdateAuthDataResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateAuthData not implemented")
+	return nil, status.Errorf(codes.Unimplemented, "method Handle not implemented")
 }
 func (UnimplementedGophKeeperServerServer) DeleteAuthData(context.Context, *DeleteAuthDataRequest) (*DeleteAuthDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAuthData not implemented")
@@ -282,7 +282,7 @@ func (UnimplementedGophKeeperServerServer) GetCards(context.Context, *GetCardsRe
 	return nil, status.Errorf(codes.Unimplemented, "method GetCards not implemented")
 }
 func (UnimplementedGophKeeperServerServer) UpdateCard(context.Context, *UpdateCardRequest) (*UpdateCardResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateCard not implemented")
+	return nil, status.Errorf(codes.Unimplemented, "method Handle not implemented")
 }
 func (UnimplementedGophKeeperServerServer) DeleteCard(context.Context, *DeleteCardRequest) (*DeleteCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCard not implemented")
@@ -610,7 +610,7 @@ var GophKeeperServer_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _GophKeeperServer_GetAuthData_Handler,
 		},
 		{
-			MethodName: "UpdateAuthData",
+			MethodName: "Handle",
 			Handler:    _GophKeeperServer_UpdateAuthData_Handler,
 		},
 		{
@@ -626,7 +626,7 @@ var GophKeeperServer_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _GophKeeperServer_GetCards_Handler,
 		},
 		{
-			MethodName: "UpdateCard",
+			MethodName: "Handle",
 			Handler:    _GophKeeperServer_UpdateCard_Handler,
 		},
 		{

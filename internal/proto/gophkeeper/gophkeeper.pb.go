@@ -2377,11 +2377,11 @@ var file_pkg_proto_gophkeeper_gophkeeper_proto_depIdxs = []int32{
 	2,  // 10: proto.gophkeeper.GophKeeperServer.SignIn:input_type -> proto.gophkeeper.SignInRequest
 	12, // 11: proto.gophkeeper.GophKeeperServer.CreateAuthData:input_type -> proto.gophkeeper.CreateAuthDataRequest
 	14, // 12: proto.gophkeeper.GophKeeperServer.GetAuthData:input_type -> proto.gophkeeper.GetAuthDataRequest
-	16, // 13: proto.gophkeeper.GophKeeperServer.UpdateAuthData:input_type -> proto.gophkeeper.UpdateAuthDataRequest
+	16, // 13: proto.gophkeeper.GophKeeperServer.Handle:input_type -> proto.gophkeeper.UpdateAuthDataRequest
 	18, // 14: proto.gophkeeper.GophKeeperServer.DeleteAuthData:input_type -> proto.gophkeeper.DeleteAuthDataRequest
 	4,  // 15: proto.gophkeeper.GophKeeperServer.CreateCard:input_type -> proto.gophkeeper.CreateCardRequest
 	6,  // 16: proto.gophkeeper.GophKeeperServer.GetCards:input_type -> proto.gophkeeper.GetCardsRequest
-	8,  // 17: proto.gophkeeper.GophKeeperServer.UpdateCard:input_type -> proto.gophkeeper.UpdateCardRequest
+	8,  // 17: proto.gophkeeper.GophKeeperServer.Handle:input_type -> proto.gophkeeper.UpdateCardRequest
 	10, // 18: proto.gophkeeper.GophKeeperServer.DeleteCard:input_type -> proto.gophkeeper.DeleteCardRequest
 	20, // 19: proto.gophkeeper.GophKeeperServer.CreateConfTextData:input_type -> proto.gophkeeper.CreateConfTextDataRequest
 	22, // 20: proto.gophkeeper.GophKeeperServer.GetConfTextData:input_type -> proto.gophkeeper.GetConfTextDataRequest
@@ -2392,11 +2392,11 @@ var file_pkg_proto_gophkeeper_gophkeeper_proto_depIdxs = []int32{
 	3,  // 25: proto.gophkeeper.GophKeeperServer.SignIn:output_type -> proto.gophkeeper.SignInResponse
 	13, // 26: proto.gophkeeper.GophKeeperServer.CreateAuthData:output_type -> proto.gophkeeper.CreateAuthDataResponse
 	15, // 27: proto.gophkeeper.GophKeeperServer.GetAuthData:output_type -> proto.gophkeeper.GetAuthDataResponse
-	17, // 28: proto.gophkeeper.GophKeeperServer.UpdateAuthData:output_type -> proto.gophkeeper.UpdateAuthDataResponse
+	17, // 28: proto.gophkeeper.GophKeeperServer.Handle:output_type -> proto.gophkeeper.UpdateAuthDataResponse
 	19, // 29: proto.gophkeeper.GophKeeperServer.DeleteAuthData:output_type -> proto.gophkeeper.DeleteAuthDataResponse
 	5,  // 30: proto.gophkeeper.GophKeeperServer.CreateCard:output_type -> proto.gophkeeper.CreateCardResponse
 	7,  // 31: proto.gophkeeper.GophKeeperServer.GetCards:output_type -> proto.gophkeeper.GetCardsResponse
-	9,  // 32: proto.gophkeeper.GophKeeperServer.UpdateCard:output_type -> proto.gophkeeper.UpdateCardResponse
+	9,  // 32: proto.gophkeeper.GophKeeperServer.Handle:output_type -> proto.gophkeeper.UpdateCardResponse
 	11, // 33: proto.gophkeeper.GophKeeperServer.DeleteCard:output_type -> proto.gophkeeper.DeleteCardResponse
 	21, // 34: proto.gophkeeper.GophKeeperServer.CreateConfTextData:output_type -> proto.gophkeeper.CreateConfTextDataResponse
 	23, // 35: proto.gophkeeper.GophKeeperServer.GetConfTextData:output_type -> proto.gophkeeper.GetConfTextDataResponse

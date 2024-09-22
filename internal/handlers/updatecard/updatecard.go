@@ -24,7 +24,7 @@ func New(cards cards.Service, notification notification.Service) *Handler {
 	}
 }
 
-func (h *Handler) UpdateCard(ctx context.Context, in *pb.UpdateCardRequest) (*pb.UpdateCardResponse, error) {
+func (h *Handler) Handle(ctx context.Context, in *pb.UpdateCardRequest) (*pb.UpdateCardResponse, error) {
 	if in.Card == nil {
 		return nil, nil
 	}
@@ -37,7 +37,7 @@ func (h *Handler) UpdateCard(ctx context.Context, in *pb.UpdateCardRequest) (*pb
 		CVV:            in.Card.Cvv,
 	}
 	if !card.IsValidNumber() || !card.IsValidDate() || !card.IsValidNumber() {
-		logger.Log().Sugar().Errorw("UpdateCard handler", "validation error")
+		logger.Log().Sugar().Errorw("Handle handler", "validation error")
 		return &pb.UpdateCardResponse{Result: false}, status.Errorf(codes.InvalidArgument, "Incorrect card data")
 	}
 	_, err := h.cards.Update(ctx, card, userID)
