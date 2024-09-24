@@ -56,7 +56,6 @@ func GetUserID(tokenString string) string {
 	return claims.UserID
 }
 
-// GetSessionID - parse JWT string and return SessionID
 func GetSessionID(tokenString string) string {
 	claims := &Claims{}
 	token, err := jwt.ParseWithClaims(tokenString, claims,

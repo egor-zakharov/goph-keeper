@@ -40,9 +40,11 @@ import (
 	sessionStorage "github.com/egor-zakharov/goph-keeper/internal/storage/session"
 	textStorage "github.com/egor-zakharov/goph-keeper/internal/storage/textdata"
 	usersStorage "github.com/egor-zakharov/goph-keeper/internal/storage/users"
+	"github.com/egor-zakharov/goph-keeper/internal/tls"
 	_ "github.com/jackc/pgx/v5/stdlib"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
 	"net"
 	"os/signal"
@@ -152,11 +154,19 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
 	defer stop()
 	go func() {
+		const (
+			certFilePath = "cert.pem" // certFilePath - path to TLS certificate
+			keyFilePath  = "key.pem"  // keyFilePath - path to TLS key
+		)
+		_ = tls.CreateTLSCert(certFilePath, keyFilePath)
+		creds, _ := credentials.NewServerTLSFromFile(certFilePath, keyFilePath)
+
 		listen, err := net.Listen("tcp", conf.FlagRunGRPCAddr)
 		if err != nil {
 			panic(err)
 		}
 		s := grpc.NewServer(
+			grpc.Creds(creds),
 			grpc.UnaryInterceptor(middleware.AuthInterceptor),
 			grpc.MaxConcurrentStreams(20),
 			grpc.StreamInterceptor(middleware.StreamAuthInterceptor))

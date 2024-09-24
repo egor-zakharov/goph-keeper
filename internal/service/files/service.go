@@ -92,9 +92,8 @@ func (s *service) Download(in *pb.DownloadFileRequest, stream pb.GophKeeperServe
 		}
 	}
 	if fileName == "" {
-		return fmt.Errorf("%s", "not fount")
+		return fmt.Errorf("%s", "not found")
 	}
-	//id + name
 	path := filepath.Join("uploaded", fmt.Sprintf("%s_%s", fileID, fileName))
 
 	fileInfo, err := os.Stat(path)
