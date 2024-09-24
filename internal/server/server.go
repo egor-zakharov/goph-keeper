@@ -28,7 +28,7 @@ import (
 )
 
 type GophKeeperServer struct {
-	pb.UnimplementedGophKeeperServerServer
+	pb.UnsafeGophKeeperServer
 	signUp *signup.Handler
 	signIn *signin.Handler
 
@@ -163,11 +163,11 @@ func (s *GophKeeperServer) DeleteConfTextData(ctx context.Context, in *pb.Delete
 	return s.deleteTextData.Handle(ctx, in)
 }
 
-func (s *GophKeeperServer) SubscribeToChanges(in *pb.SubscribeToChangesRequest, stream pb.GophKeeperServer_SubscribeToChangesServer) error {
+func (s *GophKeeperServer) SubscribeToChanges(in *pb.SubscribeToChangesRequest, stream pb.GophKeeper_SubscribeToChangesServer) error {
 	return s.subscribe.SubscribeToChanges(in, stream)
 }
 
-func (s *GophKeeperServer) UploadFile(stream pb.GophKeeperServer_UploadFileServer) error {
+func (s *GophKeeperServer) UploadFile(stream pb.GophKeeper_UploadFileServer) error {
 	return s.uploadFile.Handle(stream)
 }
 
@@ -179,6 +179,6 @@ func (s *GophKeeperServer) DeleteFile(ctx context.Context, in *pb.DeleteFileRequ
 	return s.deleteFile.Handle(ctx, in)
 }
 
-func (s *GophKeeperServer) DownloadFile(in *pb.DownloadFileRequest, stream pb.GophKeeperServer_DownloadFileServer) error {
+func (s *GophKeeperServer) DownloadFile(in *pb.DownloadFileRequest, stream pb.GophKeeper_DownloadFileServer) error {
 	return s.downloadFile.Handle(in, stream)
 }

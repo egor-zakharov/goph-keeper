@@ -20,7 +20,7 @@ func New(fileStorage files.Storage) Service {
 	return &service{fileStorage: fileStorage}
 }
 
-func (s *service) Add(ctx context.Context, stream pb.GophKeeperServer_UploadFileServer) (*models.FileData, error) {
+func (s *service) Add(ctx context.Context, stream pb.GophKeeper_UploadFileServer) (*models.FileData, error) {
 	userID := ctx.Value(auth.UserIdContextKey).(string)
 
 	file := models.NewFile()
@@ -76,7 +76,7 @@ func (s *service) Delete(ctx context.Context, id string, userID string) error {
 	return s.fileStorage.Delete(ctx, id, userID)
 }
 
-func (s *service) Download(in *pb.DownloadFileRequest, stream pb.GophKeeperServer_DownloadFileServer) error {
+func (s *service) Download(in *pb.DownloadFileRequest, stream pb.GophKeeper_DownloadFileServer) error {
 	ctx := stream.Context()
 	userID := ctx.Value(auth.UserIdContextKey).(string)
 	fileID := in.GetId()

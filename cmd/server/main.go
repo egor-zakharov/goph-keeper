@@ -170,7 +170,7 @@ func main() {
 			grpc.UnaryInterceptor(middleware.AuthInterceptor),
 			grpc.MaxConcurrentStreams(20),
 			grpc.StreamInterceptor(middleware.StreamAuthInterceptor))
-		pb.RegisterGophKeeperServerServer(s, keeperServer)
+		pb.RegisterGophKeeperServer(s, keeperServer)
 		reflection.Register(s)
 
 		err = s.Serve(listen)

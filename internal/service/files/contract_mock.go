@@ -37,7 +37,7 @@ func (m *MockService) EXPECT() *MockServiceMockRecorder {
 }
 
 // Add mocks base method.
-func (m *MockService) Add(ctx context.Context, stream gophkeeper.GophKeeperServer_UploadFileServer) (*models.FileData, error) {
+func (m *MockService) Add(ctx context.Context, stream gophkeeper.GophKeeper_UploadFileServer) (*models.FileData, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Add", ctx, stream)
 	ret0, _ := ret[0].(*models.FileData)
@@ -66,7 +66,7 @@ func (mr *MockServiceMockRecorder) Delete(ctx, id, userID interface{}) *gomock.C
 }
 
 // Download mocks base method.
-func (m *MockService) Download(in *gophkeeper.DownloadFileRequest, stream gophkeeper.GophKeeperServer_DownloadFileServer) error {
+func (m *MockService) Download(in *gophkeeper.DownloadFileRequest, stream gophkeeper.GophKeeper_DownloadFileServer) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Download", in, stream)
 	ret0, _ := ret[0].(error)

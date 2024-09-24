@@ -6,7 +6,7 @@ option go_package = "internal/proto/gophkeeper";
 package proto.gophkeeper;
 
 // GophKeeperServer service provides ability to store date securely
-service GophKeeperServer{
+service GophKeeper{
   rpc SignUp(SignUpRequest) returns (SignUpResponse);
   rpc SignIn(SignInRequest) returns (SignInResponse);
 

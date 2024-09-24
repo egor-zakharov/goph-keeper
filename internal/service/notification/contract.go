@@ -8,6 +8,6 @@ import (
 //go:generate mockgen -source=contract.go -destination=contract_mock.go -package=notification
 
 type Service interface {
-	Add(ctx context.Context, stream pb.GophKeeperServer_SubscribeToChangesServer)
+	Add(ctx context.Context, stream pb.GophKeeper_SubscribeToChangesServer)
 	Send(ctx context.Context, product string, action string, id string)
 }

@@ -15,7 +15,7 @@ func New(session session.Storage) Service {
 	return &service{session: session}
 }
 
-func (s service) Add(ctx context.Context, stream pb.GophKeeperServer_SubscribeToChangesServer) {
+func (s service) Add(ctx context.Context, stream pb.GophKeeper_SubscribeToChangesServer) {
 	userID := ctx.Value(auth.UserIdContextKey).(string)
 	sessionID, _ := ctx.Value(auth.SessionIdContextKey).(string)
 	s.session.Add(userID, sessionID, stream)

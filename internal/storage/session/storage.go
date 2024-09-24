@@ -6,30 +6,30 @@ import (
 )
 
 type storage struct {
-	syncClients map[string]map[string]pb.GophKeeperServer_SubscribeToChangesServer
+	syncClients map[string]map[string]pb.GophKeeper_SubscribeToChangesServer
 	mu          sync.RWMutex
 }
 
 func New() Storage {
 	return &storage{
-		syncClients: make(map[string]map[string]pb.GophKeeperServer_SubscribeToChangesServer),
+		syncClients: make(map[string]map[string]pb.GophKeeper_SubscribeToChangesServer),
 	}
 }
 
-func (s *storage) Add(userID string, sessionID string, stream pb.GophKeeperServer_SubscribeToChangesServer) {
+func (s *storage) Add(userID string, sessionID string, stream pb.GophKeeper_SubscribeToChangesServer) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if _, exists := s.syncClients[userID]; !exists {
-		s.syncClients[userID] = make(map[string]pb.GophKeeperServer_SubscribeToChangesServer)
+		s.syncClients[userID] = make(map[string]pb.GophKeeper_SubscribeToChangesServer)
 	}
 	s.syncClients[userID][sessionID] = stream
 }
 
-func (s *storage) Get(userID string, sessionID string) map[string]pb.GophKeeperServer_SubscribeToChangesServer {
+func (s *storage) Get(userID string, sessionID string) map[string]pb.GophKeeper_SubscribeToChangesServer {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
-	response := make(map[string]pb.GophKeeperServer_SubscribeToChangesServer)
+	response := make(map[string]pb.GophKeeper_SubscribeToChangesServer)
 
 	for session, client := range s.syncClients[userID] {
 		if session != sessionID {

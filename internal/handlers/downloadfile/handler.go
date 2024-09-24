@@ -18,7 +18,7 @@ func New(service files.Service) *Handler {
 	}
 }
 
-func (h *Handler) Handle(in *pb.DownloadFileRequest, stream pb.GophKeeperServer_DownloadFileServer) error {
+func (h *Handler) Handle(in *pb.DownloadFileRequest, stream pb.GophKeeper_DownloadFileServer) error {
 	err := h.service.Download(in, stream)
 	if err != nil {
 		logger.Log().Sugar().Errorw("Download file handler", "file service download", err)

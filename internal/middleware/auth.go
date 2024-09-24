@@ -20,8 +20,8 @@ func AuthInterceptor(ctx context.Context,
 	info *grpc.UnaryServerInfo,
 	handler grpc.UnaryHandler) (interface{}, error) {
 	switch info.FullMethod {
-	case gophkeeper.GophKeeperServer_SignUp_FullMethodName,
-		gophkeeper.GophKeeperServer_SignIn_FullMethodName:
+	case gophkeeper.GophKeeper_SignUp_FullMethodName,
+		gophkeeper.GophKeeper_SignIn_FullMethodName:
 		logger.Log().Debug("No protected method", zap.String("method", info.FullMethod))
 
 		return handler(ctx, req)

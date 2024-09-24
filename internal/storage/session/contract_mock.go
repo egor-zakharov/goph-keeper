@@ -35,7 +35,7 @@ func (m *MockStorage) EXPECT() *MockStorageMockRecorder {
 }
 
 // Add mocks base method.
-func (m *MockStorage) Add(userID, sessionID string, stream gophkeeper.GophKeeperServer_SubscribeToChangesServer) {
+func (m *MockStorage) Add(userID, sessionID string, stream gophkeeper.GophKeeper_SubscribeToChangesServer) {
 	m.ctrl.T.Helper()
 	m.ctrl.Call(m, "Add", userID, sessionID, stream)
 }
@@ -47,10 +47,10 @@ func (mr *MockStorageMockRecorder) Add(userID, sessionID, stream interface{}) *g
 }
 
 // Get mocks base method.
-func (m *MockStorage) Get(userID, sessionID string) map[string]gophkeeper.GophKeeperServer_SubscribeToChangesServer {
+func (m *MockStorage) Get(userID, sessionID string) map[string]gophkeeper.GophKeeper_SubscribeToChangesServer {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Get", userID, sessionID)
-	ret0, _ := ret[0].(map[string]gophkeeper.GophKeeperServer_SubscribeToChangesServer)
+	ret0, _ := ret[0].(map[string]gophkeeper.GophKeeper_SubscribeToChangesServer)
 	return ret0
 }
 

@@ -36,7 +36,7 @@ func (m *MockService) EXPECT() *MockServiceMockRecorder {
 }
 
 // Add mocks base method.
-func (m *MockService) Add(ctx context.Context, stream gophkeeper.GophKeeperServer_SubscribeToChangesServer) {
+func (m *MockService) Add(ctx context.Context, stream gophkeeper.GophKeeper_SubscribeToChangesServer) {
 	m.ctrl.T.Helper()
 	m.ctrl.Call(m, "Add", ctx, stream)
 }

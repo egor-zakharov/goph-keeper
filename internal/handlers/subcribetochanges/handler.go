@@ -17,7 +17,7 @@ func New(notification notification.Service) *Handler {
 	}
 }
 
-func (h *Handler) SubscribeToChanges(_ *pb.SubscribeToChangesRequest, stream pb.GophKeeperServer_SubscribeToChangesServer) error {
+func (h *Handler) SubscribeToChanges(_ *pb.SubscribeToChangesRequest, stream pb.GophKeeper_SubscribeToChangesServer) error {
 	ctx, cancel := context.WithCancel(stream.Context())
 	defer cancel()
 	h.notification.Add(ctx, stream)

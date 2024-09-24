@@ -21,7 +21,7 @@ func New(service files.Service, notification notification.Service) *Handler {
 	}
 }
 
-func (h *Handler) Handle(stream pb.GophKeeperServer_UploadFileServer) error {
+func (h *Handler) Handle(stream pb.GophKeeper_UploadFileServer) error {
 	ctx := stream.Context()
 	fileData, err := h.service.Add(ctx, stream)
 	if err != nil {
