@@ -57,6 +57,8 @@ func main() {
 		panic(err)
 	}
 	logger.Log().Sugar().Infow("Logging info", "level", conf.FlagLogLevel)
+	logger.Log().Sugar().Infow("Logging info", "db", conf.FlagDB)
+	logger.Log().Sugar().Infow("Logging info", "grpc", conf.FlagRunGRPCAddr)
 
 	//Migrator
 	db, err := sql.Open("pgx", conf.FlagDB)
@@ -162,7 +164,6 @@ func main() {
 		reflection.Register(s)
 
 		err = s.Serve(listen)
-		logger.Log().Sugar().Infow("Running grpc keeperServer", "address", conf.FlagRunGRPCAddr)
 		if err != nil {
 			panic(err)
 		}

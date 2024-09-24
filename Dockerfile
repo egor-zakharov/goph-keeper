@@ -12,7 +12,7 @@ RUN go mod download
 COPY . .
 
 # Собираем бинарный файл приложения
-RUN go build -o server github.com/egor-zakharov/goph-keeper/server
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o server ./cmd/server/main.go
 
 # Используем минимальный базовый образ для запуска приложения (этап запуска)
 FROM alpine:latest
@@ -30,4 +30,4 @@ COPY --from=builder /app/server .
 EXPOSE 8081
 
 # Задаем команду для запуска приложения
-CMD ["/app/server"]
+CMD ["./server"]
