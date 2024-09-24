@@ -1,6 +1,6 @@
 module github.com/egor-zakharov/goph-keeper
 
-go 1.23.0
+go 1.23
 
 require (
 	github.com/EClaesson/go-luhn v0.0.0-20210207103312-b1c12d658b70
@@ -13,7 +13,7 @@ require (
 	github.com/jackc/pgx/v5 v5.7.1
 	go.uber.org/zap v1.27.0
 	golang.org/x/crypto v0.27.0
-	google.golang.org/grpc v1.66.2
+	google.golang.org/grpc v1.67.0
 	google.golang.org/protobuf v1.34.2
 )
 

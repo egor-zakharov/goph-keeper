@@ -9,9 +9,12 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/createtextdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/deleteauthdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/deletecard"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/deletefile"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/deletetextdata"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/downloadfile"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/getauthdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/getcards"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/getfiles"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/gettextdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/signin"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/signup"
@@ -19,6 +22,7 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/updateauthdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/updatecard"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/updatetextdata"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/uploadfile"
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
 	"github.com/egor-zakharov/goph-keeper/internal/middleware"
 	"github.com/egor-zakharov/goph-keeper/internal/migrator"
@@ -26,11 +30,13 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/server"
 	authService "github.com/egor-zakharov/goph-keeper/internal/service/authdata"
 	cardsService "github.com/egor-zakharov/goph-keeper/internal/service/cards"
+	filesService "github.com/egor-zakharov/goph-keeper/internal/service/files"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
 	textService "github.com/egor-zakharov/goph-keeper/internal/service/textdata"
 	usersService "github.com/egor-zakharov/goph-keeper/internal/service/users"
 	authStorage "github.com/egor-zakharov/goph-keeper/internal/storage/authdata"
 	cardsStorage "github.com/egor-zakharov/goph-keeper/internal/storage/cards"
+	filesStorage "github.com/egor-zakharov/goph-keeper/internal/storage/files"
 	sessionStorage "github.com/egor-zakharov/goph-keeper/internal/storage/session"
 	textStorage "github.com/egor-zakharov/goph-keeper/internal/storage/textdata"
 	usersStorage "github.com/egor-zakharov/goph-keeper/internal/storage/users"
@@ -84,6 +90,7 @@ func main() {
 	authStore := authStorage.New(db)
 	textStore := textStorage.New(db)
 	session := sessionStorage.New()
+	filesStore := filesStorage.New(db)
 
 	//Service
 	usersService := usersService.New(usersStore)
@@ -91,6 +98,7 @@ func main() {
 	authService := authService.New(authStore)
 	textService := textService.New(textStore)
 	notificationService := notification.New(session)
+	filesService := filesService.New(filesStore)
 
 	//Handlers
 	signUpHandler := signup.New(usersService)
@@ -107,6 +115,10 @@ func main() {
 	getTextDataHandler := gettextdata.New(textService)
 	updateTextDataHandler := updatetextdata.New(textService, notificationService)
 	deleteTextDataHandler := deletetextdata.New(textService, notificationService)
+	filesUploadHandler := uploadfile.New(filesService, notificationService)
+	getFilesHandler := getfiles.New(filesService)
+	deleteFileHandler := deletefile.New(filesService, notificationService)
+	downloadFileHandler := downloadfile.New(filesService)
 
 	subscribeToChangesHandler := subcribetochanges.New(notificationService)
 
@@ -129,6 +141,10 @@ func main() {
 		getTextDataHandler,
 		updateTextDataHandler,
 		deleteTextDataHandler,
+		filesUploadHandler,
+		getFilesHandler,
+		deleteFileHandler,
+		downloadFileHandler,
 	)
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)

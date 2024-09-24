@@ -25,13 +25,12 @@ service GophKeeperServer{
   rpc UpdateConfTextData(UpdateConfTextDataRequest) returns (UpdateConfTextDataResponse);
   rpc DeleteConfTextData(DeleteConfTextDataRequest) returns (DeleteConfTextDataResponse);
 
-  //
   rpc SubscribeToChanges(SubscribeToChangesRequest) returns (stream SubscribeToChangesResponse);
 
-  //  rpc GetFiles(GetFilesRequest) returns (GetFilesResponse);
-  //  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
-  //  rpc UploadFile(stream UploadFileRequest) returns (stream UploadFileResponse);
-  //  rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse);
+  rpc GetFiles(GetFilesRequest) returns (GetFilesResponse);
+  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+  rpc UploadFile(stream UploadFileRequest) returns (UploadFileResponse);
+  rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse);
 }
 
 message SignUpRequest {
@@ -206,39 +205,43 @@ message SubscribeToChangesResponse {
   string id = 3;
 }
 
-//message UploadFileRequest {
-//  bytes data = 1;
-//  string filename = 2;
-//}
-//
-//message UploadFileResponse {
-//  string message = 1;
-//  bool success = 2;
-//}
-//
-//message GetFilesRequest {
-//}
-//
-//message GetFilesResponse {
-//  message File {
-//    string name = 1;
-//    string uploaded_at = 2;
-//    string size = 3;
-//  }
-//  repeated File files = 1;
-//}
-//
-//message DeleteFileRequest {
-//  string name = 1;
-//}
-//
-//message DeleteFileResponse {
-//}
-//
-//message DownloadFileRequest {
-//  string name = 1;
-//}
-//
-//message DownloadFileResponse {
-//  bytes data = 1;
-//}
+message UploadFileRequest {
+  message File {
+    bytes data = 1;
+    string filename = 2;
+    string meta = 3;
+  }
+  File file = 1;
+}
+
+message UploadFileResponse {
+  string id = 1;
+}
+
+message GetFilesRequest {
+}
+
+message GetFilesResponse {
+  message File {
+    string id = 1;
+    string name = 2;
+    string meta = 3;
+  }
+  repeated File files = 1;
+}
+
+message DeleteFileRequest {
+  string id = 1;
+}
+
+message DeleteFileResponse {
+  bool result = 1;
+}
+
+message DownloadFileRequest {
+  string id = 1;
+}
+
+message DownloadFileResponse {
+  bytes data = 1;
+}

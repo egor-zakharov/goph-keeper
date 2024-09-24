@@ -12,10 +12,19 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
     ports:
-      - 5432:5432
+      - "5432:5432"
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8085:8080
+      - "8085:8080"
+
+  gophkeeper:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Или укажите путь к Dockerfile, если он в другой папке
+    ports:
+      - "8081:8081"  # Замените на порт, который использует ваше приложение
+    depends_on:
+      - db

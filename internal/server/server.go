@@ -7,9 +7,12 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/createtextdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/deleteauthdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/deletecard"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/deletefile"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/deletetextdata"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/downloadfile"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/getauthdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/getcards"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/getfiles"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/gettextdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/signin"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/signup"
@@ -17,6 +20,7 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/updateauthdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/updatecard"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/updatetextdata"
+	"github.com/egor-zakharov/goph-keeper/internal/handlers/uploadfile"
 	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	authService "github.com/egor-zakharov/goph-keeper/internal/service/authdata"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
@@ -45,6 +49,11 @@ type GophKeeperServer struct {
 
 	subscribe *subcribetochanges.Handler
 
+	uploadFile   *uploadfile.Handler
+	getFiles     *getfiles.Handler
+	deleteFile   *deletefile.Handler
+	downloadFile *downloadfile.Handler
+
 	authService  authService.Service
 	notification notification.Service
 	rwMutex      sync.RWMutex
@@ -68,6 +77,10 @@ func New(
 	getTextData *gettextdata.Handler,
 	updateTextData *updatetextdata.Handler,
 	deleteTextData *deletetextdata.Handler,
+	uploadFile *uploadfile.Handler,
+	getFiles *getfiles.Handler,
+	deleteFile *deletefile.Handler,
+	downloadFile *downloadfile.Handler,
 ) *GophKeeperServer {
 	return &GophKeeperServer{
 		signUp:         signUp,
@@ -87,6 +100,10 @@ func New(
 		getTextData:    getTextData,
 		updateTextData: updateTextData,
 		deleteTextData: deleteTextData,
+		uploadFile:     uploadFile,
+		getFiles:       getFiles,
+		deleteFile:     deleteFile,
+		downloadFile:   downloadFile,
 	}
 }
 
@@ -148,4 +165,20 @@ func (s *GophKeeperServer) DeleteConfTextData(ctx context.Context, in *pb.Delete
 
 func (s *GophKeeperServer) SubscribeToChanges(in *pb.SubscribeToChangesRequest, stream pb.GophKeeperServer_SubscribeToChangesServer) error {
 	return s.subscribe.SubscribeToChanges(in, stream)
+}
+
+func (s *GophKeeperServer) UploadFile(stream pb.GophKeeperServer_UploadFileServer) error {
+	return s.uploadFile.Handle(stream)
+}
+
+func (s *GophKeeperServer) GetFiles(ctx context.Context, in *pb.GetFilesRequest) (*pb.GetFilesResponse, error) {
+	return s.getFiles.Handle(ctx, in)
+}
+
+func (s *GophKeeperServer) DeleteFile(ctx context.Context, in *pb.DeleteFileRequest) (*pb.DeleteFileResponse, error) {
+	return s.deleteFile.Handle(ctx, in)
+}
+
+func (s *GophKeeperServer) DownloadFile(in *pb.DownloadFileRequest, stream pb.GophKeeperServer_DownloadFileServer) error {
+	return s.downloadFile.Handle(in, stream)
 }
