@@ -62,7 +62,7 @@ func (s *service) Add(ctx context.Context, stream pb.GophKeeper_UploadFileServer
 			return nil, err
 		}
 
-		return createdFile, stream.SendAndClose(&pb.UploadFileResponse{Id: createdFile.ID})
+		return createdFile, stream.Send(&pb.UploadFileResponse{Id: createdFile.ID})
 	}
 
 	return nil, nil

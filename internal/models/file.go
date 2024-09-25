@@ -43,6 +43,10 @@ func (f *File) Write(chunk []byte) error {
 	return err
 }
 
+func (f *File) Read(b []byte) (int, error) {
+	return f.OutputFile.Read(b)
+}
+
 func (f *File) Close() error {
 	return f.OutputFile.Close()
 }

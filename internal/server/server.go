@@ -28,7 +28,7 @@ import (
 )
 
 type GophKeeperServer struct {
-	pb.UnsafeGophKeeperServer
+	pb.UnimplementedGophKeeperServer
 	signUp *signup.Handler
 	signIn *signin.Handler
 

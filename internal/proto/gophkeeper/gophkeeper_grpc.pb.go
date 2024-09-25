@@ -63,7 +63,7 @@ type GophKeeperClient interface {
 	SubscribeToChanges(ctx context.Context, in *SubscribeToChangesRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SubscribeToChangesResponse], error)
 	GetFiles(ctx context.Context, in *GetFilesRequest, opts ...grpc.CallOption) (*GetFilesResponse, error)
 	DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error)
-	UploadFile(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UploadFileRequest, UploadFileResponse], error)
+	UploadFile(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[UploadFileRequest, UploadFileResponse], error)
 	DownloadFile(ctx context.Context, in *DownloadFileRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[DownloadFileResponse], error)
 }
 
@@ -254,7 +254,7 @@ func (c *gophKeeperClient) DeleteFile(ctx context.Context, in *DeleteFileRequest
 	return out, nil
 }
 
-func (c *gophKeeperClient) UploadFile(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UploadFileRequest, UploadFileResponse], error) {
+func (c *gophKeeperClient) UploadFile(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[UploadFileRequest, UploadFileResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &GophKeeper_ServiceDesc.Streams[1], GophKeeper_UploadFile_FullMethodName, cOpts...)
 	if err != nil {
@@ -265,7 +265,7 @@ func (c *gophKeeperClient) UploadFile(ctx context.Context, opts ...grpc.CallOpti
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type GophKeeper_UploadFileClient = grpc.ClientStreamingClient[UploadFileRequest, UploadFileResponse]
+type GophKeeper_UploadFileClient = grpc.BidiStreamingClient[UploadFileRequest, UploadFileResponse]
 
 func (c *gophKeeperClient) DownloadFile(ctx context.Context, in *DownloadFileRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[DownloadFileResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -309,7 +309,7 @@ type GophKeeperServer interface {
 	SubscribeToChanges(*SubscribeToChangesRequest, grpc.ServerStreamingServer[SubscribeToChangesResponse]) error
 	GetFiles(context.Context, *GetFilesRequest) (*GetFilesResponse, error)
 	DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error)
-	UploadFile(grpc.ClientStreamingServer[UploadFileRequest, UploadFileResponse]) error
+	UploadFile(grpc.BidiStreamingServer[UploadFileRequest, UploadFileResponse]) error
 	DownloadFile(*DownloadFileRequest, grpc.ServerStreamingServer[DownloadFileResponse]) error
 	mustEmbedUnimplementedGophKeeperServer()
 }
@@ -372,7 +372,7 @@ func (UnimplementedGophKeeperServer) GetFiles(context.Context, *GetFilesRequest)
 func (UnimplementedGophKeeperServer) DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFile not implemented")
 }
-func (UnimplementedGophKeeperServer) UploadFile(grpc.ClientStreamingServer[UploadFileRequest, UploadFileResponse]) error {
+func (UnimplementedGophKeeperServer) UploadFile(grpc.BidiStreamingServer[UploadFileRequest, UploadFileResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method UploadFile not implemented")
 }
 func (UnimplementedGophKeeperServer) DownloadFile(*DownloadFileRequest, grpc.ServerStreamingServer[DownloadFileResponse]) error {
@@ -703,7 +703,7 @@ func _GophKeeper_UploadFile_Handler(srv interface{}, stream grpc.ServerStream) e
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type GophKeeper_UploadFileServer = grpc.ClientStreamingServer[UploadFileRequest, UploadFileResponse]
+type GophKeeper_UploadFileServer = grpc.BidiStreamingServer[UploadFileRequest, UploadFileResponse]
 
 func _GophKeeper_DownloadFile_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(DownloadFileRequest)
@@ -797,6 +797,7 @@ var GophKeeper_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "UploadFile",
 			Handler:       _GophKeeper_UploadFile_Handler,
+			ServerStreams: true,
 			ClientStreams: true,
 		},
 		{

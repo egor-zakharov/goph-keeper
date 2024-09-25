@@ -29,7 +29,7 @@ service GophKeeper{
 
   rpc GetFiles(GetFilesRequest) returns (GetFilesResponse);
   rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
-  rpc UploadFile(stream UploadFileRequest) returns (UploadFileResponse);
+  rpc UploadFile(stream UploadFileRequest) returns (stream UploadFileResponse);
   rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse);
 }
 
