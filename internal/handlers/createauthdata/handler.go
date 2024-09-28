@@ -10,8 +10,8 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/service/authdata"
 
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 )
 
 type Handler struct {
@@ -28,7 +28,7 @@ func New(service authdata.Service, notification notification.Service) *Handler {
 
 func (h *Handler) Handle(ctx context.Context, in *pb.CreateAuthDataRequest) (*pb.CreateAuthDataResponse, error) {
 	response := &pb.CreateAuthDataResponse{}
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 	if in.Data == nil {
 		logger.Log().Sugar().Errorw("Create auth data handler", "empty data error")
 		return nil, status.Errorf(codes.InvalidArgument, "empty data error")
@@ -44,6 +44,6 @@ func (h *Handler) Handle(ctx context.Context, in *pb.CreateAuthDataRequest) (*pb
 		return nil, status.Errorf(codes.Internal, "internal error")
 	}
 	response.Id = data.ID
-	h.notification.Send(ctx, authData.Meta, "create", response.Id)
+	h.notification.Send(ctx, notification.ProductAuth, notification.ActionCreate, response.Id)
 	return response, nil
 }

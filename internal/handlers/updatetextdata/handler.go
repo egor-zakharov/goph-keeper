@@ -9,8 +9,8 @@ import (
 	"google.golang.org/grpc/status"
 
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 )
 
 type Handler struct {
@@ -25,13 +25,13 @@ func New(service textdata.Service, notification notification.Service) *Handler {
 	}
 }
 
-func (h *Handler) Handle(ctx context.Context, in *pb.UpdateConfTextDataRequest) (*pb.UpdateConfTextDataResponse, error) {
+func (h *Handler) Handle(ctx context.Context, in *pb.UpdateTextDataRequest) (*pb.UpdateTextDataResponse, error) {
 	if in.Data == nil {
 		logger.Log().Sugar().Errorw("Update text data handler", "empty data error")
-		return &pb.UpdateConfTextDataResponse{Result: false}, status.Errorf(codes.InvalidArgument, "empty data error")
+		return &pb.UpdateTextDataResponse{Result: false}, status.Errorf(codes.InvalidArgument, "empty data error")
 	}
 
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 	data := models.TextData{
 		ID:   in.Data.Id,
 		Meta: in.Data.Meta,
@@ -40,9 +40,9 @@ func (h *Handler) Handle(ctx context.Context, in *pb.UpdateConfTextDataRequest) 
 	_, err := h.service.Update(ctx, data, userID)
 	if err != nil {
 		logger.Log().Sugar().Errorw("Update text data handler", "update text data service", err)
-		return &pb.UpdateConfTextDataResponse{Result: false}, status.Errorf(codes.Internal, "internal error")
+		return &pb.UpdateTextDataResponse{Result: false}, status.Errorf(codes.Internal, "internal error")
 	}
-	h.notification.Send(ctx, in.Data.Meta, "update", in.Data.Id)
+	h.notification.Send(ctx, notification.ProductText, notification.ActionUpdate, in.Data.Id)
 
-	return &pb.UpdateConfTextDataResponse{Result: true}, nil
+	return &pb.UpdateTextDataResponse{Result: true}, nil
 }

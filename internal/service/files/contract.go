@@ -3,7 +3,7 @@ package files
 import (
 	"context"
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 )
 
 //go:generate mockgen -source=contract.go -destination=contract_mock.go -package=files

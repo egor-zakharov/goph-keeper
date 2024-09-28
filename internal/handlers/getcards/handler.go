@@ -4,8 +4,8 @@ import (
 	"context"
 	"github.com/egor-zakharov/goph-keeper/internal/auth"
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/cards"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -22,7 +22,7 @@ func New(cards cards.Service) *Handler {
 
 func (h *Handler) Handle(ctx context.Context, _ *pb.GetCardsRequest) (*pb.GetCardsResponse, error) {
 	response := &pb.GetCardsResponse{}
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 
 	cards, err := h.cards.Read(ctx, userID)
 	if err != nil {

@@ -5,9 +5,9 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/auth"
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/cards"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -29,7 +29,7 @@ func (h *Handler) Handle(ctx context.Context, in *pb.UpdateCardRequest) (*pb.Upd
 		logger.Log().Sugar().Errorw("Update auth data handler", "empty data error")
 		return &pb.UpdateCardResponse{Result: false}, status.Errorf(codes.InvalidArgument, "empty data error")
 	}
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 	card := models.Card{
 		ID:             in.Card.Id,
 		Number:         in.Card.Number,
@@ -46,7 +46,7 @@ func (h *Handler) Handle(ctx context.Context, in *pb.UpdateCardRequest) (*pb.Upd
 		logger.Log().Sugar().Errorw("Update card handler", "update card service", err)
 		return &pb.UpdateCardResponse{Result: false}, status.Errorf(codes.Internal, "internal error")
 	}
-	h.notification.Send(ctx, "card", "update", in.Card.Id)
+	h.notification.Send(ctx, notification.ProductCard, notification.ActionUpdate, in.Card.Id)
 
 	return &pb.UpdateCardResponse{Result: true}, nil
 }

@@ -21,9 +21,9 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/updatecard"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/updatetextdata"
 	"github.com/egor-zakharov/goph-keeper/internal/handlers/uploadfile"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	authService "github.com/egor-zakharov/goph-keeper/internal/service/authdata"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"sync"
 )
 
@@ -147,19 +147,19 @@ func (s *GophKeeperServer) DeleteAuthData(ctx context.Context, in *pb.DeleteAuth
 	return s.deleteAuthData.Handle(ctx, in)
 }
 
-func (s *GophKeeperServer) CreateConfTextData(ctx context.Context, in *pb.CreateConfTextDataRequest) (*pb.CreateConfTextDataResponse, error) {
+func (s *GophKeeperServer) CreateTextData(ctx context.Context, in *pb.CreateTextDataRequest) (*pb.CreateTextDataResponse, error) {
 	return s.createTextData.Handle(ctx, in)
 }
 
-func (s *GophKeeperServer) GetConfTextData(ctx context.Context, in *pb.GetConfTextDataRequest) (*pb.GetConfTextDataResponse, error) {
+func (s *GophKeeperServer) GetTextData(ctx context.Context, in *pb.GetTextDataRequest) (*pb.GetTextDataResponse, error) {
 	return s.getTextData.Handle(ctx, in)
 }
 
-func (s *GophKeeperServer) UpdateConfTextData(ctx context.Context, in *pb.UpdateConfTextDataRequest) (*pb.UpdateConfTextDataResponse, error) {
+func (s *GophKeeperServer) UpdateTextData(ctx context.Context, in *pb.UpdateTextDataRequest) (*pb.UpdateTextDataResponse, error) {
 	return s.updateTextData.Handle(ctx, in)
 }
 
-func (s *GophKeeperServer) DeleteConfTextData(ctx context.Context, in *pb.DeleteConfTextDataRequest) (*pb.DeleteConfTextDataResponse, error) {
+func (s *GophKeeperServer) DeleteTextData(ctx context.Context, in *pb.DeleteTextDataRequest) (*pb.DeleteTextDataResponse, error) {
 	return s.deleteTextData.Handle(ctx, in)
 }
 

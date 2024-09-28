@@ -2,8 +2,8 @@ package subcribetochanges
 
 import (
 	"context"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"time"
 )
 

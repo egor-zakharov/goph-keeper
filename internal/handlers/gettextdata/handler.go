@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 )
 
 type Handler struct {
@@ -21,9 +21,9 @@ func New(service textdata.Service) *Handler {
 	}
 }
 
-func (h *Handler) Handle(ctx context.Context, _ *pb.GetConfTextDataRequest) (*pb.GetConfTextDataResponse, error) {
-	response := &pb.GetConfTextDataResponse{}
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+func (h *Handler) Handle(ctx context.Context, _ *pb.GetTextDataRequest) (*pb.GetTextDataResponse, error) {
+	response := &pb.GetTextDataResponse{}
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 
 	data, err := h.service.Read(ctx, userID)
 	if err != nil {
@@ -32,7 +32,7 @@ func (h *Handler) Handle(ctx context.Context, _ *pb.GetConfTextDataRequest) (*pb
 	}
 
 	for _, item := range *data {
-		response.Data = append(response.Data, &pb.GetConfTextDataResponse_Data{
+		response.Data = append(response.Data, &pb.GetTextDataResponse_Data{
 			Id:   item.ID,
 			Meta: item.Meta,
 			Text: item.Text,

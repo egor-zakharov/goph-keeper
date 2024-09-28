@@ -1,7 +1,7 @@
 package session
 
 import (
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"sync"
 )
 

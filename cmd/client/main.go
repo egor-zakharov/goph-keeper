@@ -1,25 +1,38 @@
 package main
 
 import (
-	"context"
 	"fmt"
+	"github.com/c-bata/go-prompt"
+	"github.com/egor-zakharov/goph-keeper/internal/cli"
 	"github.com/egor-zakharov/goph-keeper/internal/client"
+	"github.com/egor-zakharov/goph-keeper/internal/config"
+)
+
+var (
+	buildVersion = "N/A"
+	buildDate    = "N/A"
+	buildCommit  = "N/A"
 )
 
 func main() {
-	c := client.New("localhost:8081")
+	fmt.Printf("Build version: %s\n", buildVersion)
+	fmt.Printf("Build date: %s\n", buildDate)
+	fmt.Printf("Build commit: %s\n", buildCommit)
+	conf := config.NewConfig()
+	conf.ParseFlag()
+	c := client.New(conf.FlagRunGRPCAddr)
 	err := c.Connect()
 	if err != nil {
-		panic(err)
+		fmt.Printf("Server is unavailable")
 	}
-
-	err = c.SignIn("login", "password")
-	if err != nil {
-		panic(err)
-	}
-	resp, err := c.UploadFile(context.Background(), "C:\\Users\\edzakharov\\GolandProjects\\1\\goph-keeper\\pkg\\333.exe", "нe")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(resp)
+	executor := cli.NewExecutor(c)
+	client := prompt.New(
+		executor.HandleCommands,
+		executor.ShowPrompts,
+		prompt.OptionShowCompletionAtStart(),
+		prompt.OptionPrefix("> "),
+		prompt.OptionMaxSuggestion(21),
+		prompt.OptionInputTextColor(prompt.Green),
+	)
+	client.Run()
 }

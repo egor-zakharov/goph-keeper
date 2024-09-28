@@ -2,9 +2,9 @@ package uploadfile
 
 import (
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/files"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -29,6 +29,6 @@ func (h *Handler) Handle(stream pb.GophKeeper_UploadFileServer) error {
 		return status.Errorf(codes.Internal, "internal error")
 	}
 
-	h.notification.Send(ctx, fileData.Meta, "upload", fileData.ID)
+	h.notification.Send(ctx, notification.ProductFile, notification.ActionCreate, fileData.ID)
 	return nil
 }

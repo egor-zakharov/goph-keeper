@@ -9,7 +9,7 @@ import (
 
 	"github.com/egor-zakharov/goph-keeper/internal/service/authdata"
 
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 )
 
 type Handler struct {
@@ -24,7 +24,7 @@ func New(service authdata.Service) *Handler {
 
 func (h *Handler) Handle(ctx context.Context, _ *pb.GetAuthDataRequest) (*pb.GetAuthDataResponse, error) {
 	response := &pb.GetAuthDataResponse{}
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 
 	data, err := h.service.Read(ctx, userID)
 	if err != nil {

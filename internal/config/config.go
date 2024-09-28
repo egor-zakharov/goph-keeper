@@ -18,7 +18,7 @@ func NewConfig() *Config {
 func (c *Config) ParseFlag() {
 	flag.StringVar(&c.FlagLogLevel, "l", "debug", "log level")
 	flag.StringVar(&c.FlagDB, "d", "postgres://admin:admin@localhost:5432/db?sslmode=disable", "database dsn")
-	flag.StringVar(&c.FlagRunGRPCAddr, "g", "localhost:8081", "address and port to run grpc server")
+	flag.StringVar(&c.FlagRunGRPCAddr, "g", ":8081", "address and port to run grpc server")
 
 	flag.Parse()
 

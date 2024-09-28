@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"github.com/egor-zakharov/goph-keeper/internal/auth"
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/storage/files"
+	"github.com/egor-zakharov/goph-keeper/internal/utils"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"io"
 	"os"
 	"path/filepath"
@@ -21,18 +22,18 @@ func New(fileStorage files.Storage) Service {
 }
 
 func (s *service) Add(ctx context.Context, stream pb.GophKeeper_UploadFileServer) (*models.FileData, error) {
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 
-	file := models.NewFile()
+	file := utils.NewFile()
 	var fileSize uint32
 	fileSize = 0
 	var meta string
-	defer func() {
-		if err := file.Close(); err != nil {
-		}
-	}()
+	defer file.Close()
 	for {
 		req, err := stream.Recv()
+		if err != nil {
+			return nil, err
+		}
 		meta = req.GetFile().GetMeta()
 		fileData := models.FileData{
 			Name: req.GetFile().GetFilename(),
@@ -49,23 +50,16 @@ func (s *service) Add(ctx context.Context, stream pb.GophKeeper_UploadFileServer
 				return nil, err
 			}
 		}
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			return nil, err
-		}
 		chunk := req.GetFile().GetData()
 		fileSize += uint32(len(chunk))
 
-		if err := file.Write(chunk); err != nil {
+		err = file.Write(chunk)
+		if err != nil {
 			return nil, err
 		}
 
 		return createdFile, stream.Send(&pb.UploadFileResponse{Id: createdFile.ID})
 	}
-
-	return nil, nil
 }
 
 func (s *service) Read(ctx context.Context, userID string) (*[]models.FileData, error) {
@@ -78,7 +72,7 @@ func (s *service) Delete(ctx context.Context, id string, userID string) error {
 
 func (s *service) Download(in *pb.DownloadFileRequest, stream pb.GophKeeper_DownloadFileServer) error {
 	ctx := stream.Context()
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 	fileID := in.GetId()
 	files, err := s.fileStorage.Read(ctx, userID)
 	if err != nil {
@@ -94,7 +88,7 @@ func (s *service) Download(in *pb.DownloadFileRequest, stream pb.GophKeeper_Down
 	if fileName == "" {
 		return fmt.Errorf("%s", "not found")
 	}
-	path := filepath.Join("uploaded", fmt.Sprintf("%s_%s", fileID, fileName))
+	path := filepath.Join("uploads", fmt.Sprintf("%s_%s", fileID, fileName))
 
 	fileInfo, err := os.Stat(path)
 	if err != nil {

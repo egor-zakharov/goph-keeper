@@ -17,8 +17,8 @@ const (
 	TokenExp            = time.Hour * 3
 	AuthHeader          = "authorization"
 	Bearer              = "Bearer "
-	UserIdContextKey    = "userID"
-	SessionIdContextKey = "sessionID"
+	UserIDContextKey    = "userID"
+	SessionIDContextKey = "sessionID"
 	SecretKey           = "awesomeSecret"
 )
 

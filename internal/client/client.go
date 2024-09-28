@@ -5,7 +5,8 @@ import (
 	"crypto/tls"
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
+	"github.com/egor-zakharov/goph-keeper/internal/utils"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/metadata"
@@ -121,8 +122,8 @@ func (c *client) CreateCard(ctx context.Context, number string, expirationDate s
 }
 
 func (c *client) CreateTextData(ctx context.Context, meta string, data string) (*models.TextData, error) {
-	resp, err := c.client.CreateConfTextData(c.setToken(ctx, c.token), &pb.CreateConfTextDataRequest{
-		Data: &pb.CreateConfTextDataRequest_Data{
+	resp, err := c.client.CreateTextData(c.setToken(ctx, c.token), &pb.CreateTextDataRequest{
+		Data: &pb.CreateTextDataRequest_Data{
 			Meta: meta,
 			Text: data,
 		},
@@ -143,9 +144,6 @@ func (c *client) CreateTextData(ctx context.Context, meta string, data string) (
 func (c *client) DeleteAuthData(ctx context.Context, id string) error {
 	_, err := c.client.DeleteAuthData(c.setToken(ctx, c.token), &pb.DeleteAuthDataRequest{Id: id})
 	if err != nil {
-		return err
-	}
-	if err != nil {
 		logger.Log().Sugar().Errorw("Delete auth data client error", err)
 		return err
 	}
@@ -154,9 +152,6 @@ func (c *client) DeleteAuthData(ctx context.Context, id string) error {
 
 func (c *client) DeleteCard(ctx context.Context, id string) error {
 	_, err := c.client.DeleteCard(c.setToken(ctx, c.token), &pb.DeleteCardRequest{Id: id})
-	if err != nil {
-		return err
-	}
 	if err != nil {
 		logger.Log().Sugar().Errorw("Delete card client error", err)
 		return err
@@ -167,9 +162,6 @@ func (c *client) DeleteCard(ctx context.Context, id string) error {
 func (c *client) DeleteFile(ctx context.Context, id string) error {
 	_, err := c.client.DeleteFile(c.setToken(ctx, c.token), &pb.DeleteFileRequest{Id: id})
 	if err != nil {
-		return err
-	}
-	if err != nil {
 		logger.Log().Sugar().Errorw("Delete file client error", err)
 		return err
 	}
@@ -177,10 +169,7 @@ func (c *client) DeleteFile(ctx context.Context, id string) error {
 }
 
 func (c *client) DeleteTextData(ctx context.Context, id string) error {
-	_, err := c.client.DeleteConfTextData(c.setToken(ctx, c.token), &pb.DeleteConfTextDataRequest{Id: id})
-	if err != nil {
-		return err
-	}
+	_, err := c.client.DeleteTextData(c.setToken(ctx, c.token), &pb.DeleteTextDataRequest{Id: id})
 	if err != nil {
 		logger.Log().Sugar().Errorw("Delete text data client error", err)
 		return err
@@ -195,7 +184,7 @@ func (c *client) DownloadFile(ctx context.Context, id string, fileName string) e
 		return err
 	}
 
-	localFile := models.NewFile()
+	localFile := utils.NewFile()
 	err = localFile.SetFile(fileName, "downloads")
 	if err != nil {
 		logger.Log().Sugar().Errorw("Set file error", err)
@@ -280,7 +269,7 @@ func (c *client) GetFiles(ctx context.Context) (*[]models.FileData, error) {
 }
 
 func (c *client) GetTextData(ctx context.Context) (*[]models.TextData, error) {
-	resp, err := c.client.GetConfTextData(c.setToken(ctx, c.token), &pb.GetConfTextDataRequest{})
+	resp, err := c.client.GetTextData(c.setToken(ctx, c.token), &pb.GetTextDataRequest{})
 	if err != nil {
 		logger.Log().Sugar().Errorw("Get text data client error", err)
 		return nil, err
@@ -334,8 +323,8 @@ func (c *client) UpdateCard(ctx context.Context, id string, number string, expir
 }
 
 func (c *client) UpdateTextData(ctx context.Context, id string, meta string, data string) error {
-	_, err := c.client.UpdateConfTextData(c.setToken(ctx, c.token), &pb.UpdateConfTextDataRequest{
-		Data: &pb.UpdateConfTextDataRequest_Data{
+	_, err := c.client.UpdateTextData(c.setToken(ctx, c.token), &pb.UpdateTextDataRequest{
+		Data: &pb.UpdateTextDataRequest_Data{
 			Id:   id,
 			Meta: meta,
 			Text: data,

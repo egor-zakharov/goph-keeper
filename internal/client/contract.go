@@ -3,7 +3,7 @@ package client
 import (
 	"context"
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"google.golang.org/grpc"
 )
 

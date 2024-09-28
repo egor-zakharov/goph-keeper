@@ -5,8 +5,8 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/auth"
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/users"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -22,7 +22,7 @@ func New(usersService users.Service) *Handler {
 	}
 }
 
-func (s *Handler) Handle(ctx context.Context, in *pb.SignInRequest) (*pb.SignInResponse, error) {
+func (h *Handler) Handle(ctx context.Context, in *pb.SignInRequest) (*pb.SignInResponse, error) {
 	response := &pb.SignInResponse{}
 
 	user := models.User{
@@ -35,7 +35,7 @@ func (s *Handler) Handle(ctx context.Context, in *pb.SignInRequest) (*pb.SignInR
 		return response, status.Errorf(codes.InvalidArgument, "Login or password should not be empty")
 	}
 
-	usr, err := s.usersService.Login(ctx, user)
+	usr, err := h.usersService.Login(ctx, user)
 
 	if err != nil {
 		logger.Log().Sugar().Errorw("Handle handler", "usersService login", err)

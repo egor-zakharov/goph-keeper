@@ -9,7 +9,7 @@ import (
 	reflect "reflect"
 
 	models "github.com/egor-zakharov/goph-keeper/internal/models"
-	gophkeeper "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
+	gophkeeper "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	gomock "github.com/golang/mock/gomock"
 )
 

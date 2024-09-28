@@ -9,8 +9,8 @@ import (
 	"google.golang.org/grpc/status"
 
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 )
 
 type Handler struct {
@@ -25,9 +25,9 @@ func New(service textdata.Service, notification notification.Service) *Handler {
 	}
 }
 
-func (h *Handler) Handle(ctx context.Context, in *pb.CreateConfTextDataRequest) (*pb.CreateConfTextDataResponse, error) {
-	response := &pb.CreateConfTextDataResponse{}
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+func (h *Handler) Handle(ctx context.Context, in *pb.CreateTextDataRequest) (*pb.CreateTextDataResponse, error) {
+	response := &pb.CreateTextDataResponse{}
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 	if in.Data == nil {
 		logger.Log().Sugar().Errorw("Create text data handler", "empty data error")
 		return nil, status.Errorf(codes.InvalidArgument, "empty data error")
@@ -42,6 +42,6 @@ func (h *Handler) Handle(ctx context.Context, in *pb.CreateConfTextDataRequest) 
 		return nil, status.Errorf(codes.Internal, "internal error")
 	}
 	response.Id = data.ID
-	h.notification.Send(ctx, authData.Meta, "create", response.Id)
+	h.notification.Send(ctx, notification.ProductText, notification.ActionCreate, response.Id)
 	return response, nil
 }

@@ -6,9 +6,9 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/auth"
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/users"
 	usersStorage "github.com/egor-zakharov/goph-keeper/internal/storage/users"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -40,6 +40,11 @@ func (h *Handler) Handle(ctx context.Context, in *pb.SignUpRequest) (*pb.SignUpR
 	if errors.Is(err, usersStorage.ErrConflict) {
 		logger.Log().Sugar().Errorw("Handle handler", "usersService register", err)
 		return response, status.Errorf(codes.InvalidArgument, "User with such login already exists")
+	}
+
+	if err != nil {
+		logger.Log().Sugar().Errorw("Handle handler", "usersService register", err)
+		return response, status.Errorf(codes.Internal, "Internal error")
 	}
 
 	sessionID := uuid.New().String()

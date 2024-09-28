@@ -10,8 +10,8 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/service/authdata"
 
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 )
 
 type Handler struct {
@@ -32,7 +32,7 @@ func (h *Handler) Handle(ctx context.Context, in *pb.UpdateAuthDataRequest) (*pb
 		return &pb.UpdateAuthDataResponse{Result: false}, status.Errorf(codes.InvalidArgument, "empty data error")
 	}
 
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 	data := models.AuthData{
 		ID:       in.Data.Id,
 		Meta:     in.Data.Meta,
@@ -44,7 +44,7 @@ func (h *Handler) Handle(ctx context.Context, in *pb.UpdateAuthDataRequest) (*pb
 		logger.Log().Sugar().Errorw("Update auth data handler", "update auth data service", err)
 		return &pb.UpdateAuthDataResponse{Result: false}, status.Errorf(codes.Internal, "internal error")
 	}
-	h.notification.Send(ctx, in.Data.Meta, "update", in.Data.Id)
+	h.notification.Send(ctx, notification.ProductAuth, notification.ActionUpdate, in.Data.Id)
 
 	return &pb.UpdateAuthDataResponse{Result: true}, nil
 }

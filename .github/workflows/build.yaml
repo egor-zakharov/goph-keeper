@@ -1,0 +1,40 @@
+name: Build Go Binaries
+
+on:
+  release:
+    types: [ created ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ linux, windows, macos ]
+        arch: [ amd64, arm64 ]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.23'
+
+      - name: Get version, date, and commit
+        id: vars
+        run: |
+          echo "COMMIT=$(git rev-parse HEAD)" >> $GITHUB_ENV
+          echo "VERSION=$(git describe --tags --abbrev=0 || echo 'v0.0.0')" >> $GITHUB_ENV
+          echo "BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_ENV
+
+      - name: Build
+        run: |
+          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -ldflags="-X 'main.buildVersion=${{ env.VERSION }}' -X 'main.buildCommit=${{ env.COMMIT }}' -X 'main.buildDate=${{ env.BUILD_DATE }}'" -o GophKeeperClient-${{ matrix.os }}-${{ matrix.arch }}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: GophKeeperClient-${{ matrix.os }}-${{ matrix.arch }}
+          path: GophKeeperClient-${{ matrix.os }}-${{ matrix.arch }}

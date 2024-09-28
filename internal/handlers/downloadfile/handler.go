@@ -2,8 +2,8 @@ package downloadfile
 
 import (
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/files"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

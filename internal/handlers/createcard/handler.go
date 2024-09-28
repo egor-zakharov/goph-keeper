@@ -5,9 +5,9 @@ import (
 	"github.com/egor-zakharov/goph-keeper/internal/auth"
 	"github.com/egor-zakharov/goph-keeper/internal/logger"
 	"github.com/egor-zakharov/goph-keeper/internal/models"
-	pb "github.com/egor-zakharov/goph-keeper/internal/proto/gophkeeper"
 	"github.com/egor-zakharov/goph-keeper/internal/service/cards"
 	"github.com/egor-zakharov/goph-keeper/internal/service/notification"
+	pb "github.com/egor-zakharov/goph-keeper/pkg/proto/gophkeeper"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -26,7 +26,7 @@ func New(cards cards.Service, notification notification.Service) *Handler {
 
 func (h *Handler) Handle(ctx context.Context, in *pb.CreateCardRequest) (*pb.CreateCardResponse, error) {
 	response := &pb.CreateCardResponse{}
-	userID := ctx.Value(auth.UserIdContextKey).(string)
+	userID := ctx.Value(auth.UserIDContextKey).(string)
 	if in.Card == nil {
 		logger.Log().Sugar().Errorw("Create card handler", "empty data error")
 		return nil, status.Errorf(codes.InvalidArgument, "empty data error")
@@ -51,6 +51,6 @@ func (h *Handler) Handle(ctx context.Context, in *pb.CreateCardRequest) (*pb.Cre
 	}
 
 	response.CardID = createdCard.ID
-	h.notification.Send(ctx, "card", "create", createdCard.ID)
+	h.notification.Send(ctx, notification.ProductCard, notification.ActionCreate, createdCard.ID)
 	return response, nil
 }

@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 
-option go_package = "internal/proto/gophkeeper";
+option go_package = "pkg/proto/gophkeeper";
 
 package proto.gophkeeper;
 
@@ -20,10 +20,10 @@ service GophKeeper{
   rpc UpdateCard(UpdateCardRequest) returns (UpdateCardResponse);
   rpc DeleteCard(DeleteCardRequest) returns (DeleteCardResponse);
 
-  rpc CreateConfTextData(CreateConfTextDataRequest) returns (CreateConfTextDataResponse);
-  rpc GetConfTextData(GetConfTextDataRequest) returns (GetConfTextDataResponse);
-  rpc UpdateConfTextData(UpdateConfTextDataRequest) returns (UpdateConfTextDataResponse);
-  rpc DeleteConfTextData(DeleteConfTextDataRequest) returns (DeleteConfTextDataResponse);
+  rpc CreateTextData(CreateTextDataRequest) returns (CreateTextDataResponse);
+  rpc GetTextData(GetTextDataRequest) returns (GetTextDataResponse);
+  rpc UpdateTextData(UpdateTextDataRequest) returns (UpdateTextDataResponse);
+  rpc DeleteTextData(DeleteTextDataRequest) returns (DeleteTextDataResponse);
 
   rpc SubscribeToChanges(SubscribeToChangesRequest) returns (stream SubscribeToChangesResponse);
 
@@ -151,7 +151,7 @@ message DeleteAuthDataResponse {
   bool result = 1;
 }
 
-message CreateConfTextDataRequest {
+message CreateTextDataRequest {
   message Data {
     string meta = 1;
     string text = 2;
@@ -159,14 +159,14 @@ message CreateConfTextDataRequest {
   Data data = 1;
 }
 
-message CreateConfTextDataResponse {
+message CreateTextDataResponse {
   string id = 1 ;
 }
 
-message GetConfTextDataRequest {
+message GetTextDataRequest {
 }
 
-message GetConfTextDataResponse {
+message GetTextDataResponse {
   message Data {
     string id = 1 ;
     string meta = 2;
@@ -175,7 +175,7 @@ message GetConfTextDataResponse {
   repeated Data data = 1;
 }
 
-message UpdateConfTextDataRequest {
+message UpdateTextDataRequest {
   message Data {
     string id = 1 ;
     string meta = 2;
@@ -184,15 +184,15 @@ message UpdateConfTextDataRequest {
   Data data = 1;
 }
 
-message UpdateConfTextDataResponse {
+message UpdateTextDataResponse {
   bool result = 1;
 }
 
-message DeleteConfTextDataRequest {
+message DeleteTextDataRequest {
   string id = 1 ;
 }
 
-message DeleteConfTextDataResponse {
+message DeleteTextDataResponse {
   bool result = 1;
 }
 

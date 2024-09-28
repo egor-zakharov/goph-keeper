@@ -162,6 +162,22 @@ func Test_service_Register(t *testing.T) {
 			want:    nil,
 			wantErr: true,
 		},
+		{
+			name: "error get hash password",
+			fields: fields{
+				storage: func(ctrl *gomock.Controller) users.Storage {
+					mock := users.NewMockStorage(ctrl)
+					return mock
+				},
+			},
+			args: args{
+				ctx: ctx,
+				userIn: models.User{Login: "1",
+					Password: "need more than 72 chars need more than 72 chars need more than 72 chars need more than 72 chars"},
+			},
+			want:    nil,
+			wantErr: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
