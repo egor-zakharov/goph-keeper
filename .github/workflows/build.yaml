@@ -20,9 +20,9 @@ jobs:
     steps:
       - name: Get Release Info
         run: |
-          echo "COMMIT=$(git rev-parse HEAD)" >> $GITHUB_ENV
-          echo "VERSION=$(git describe --tags --abbrev=0 || echo 'v0.0.0')" >> $GITHUB_ENV
-          echo "BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_ENV
+          echo RELEASE_TAG=${GITHUB_REF/refs\/tags\//} >> $GITHUB_ENV
+          echo RELEASE_TIME=$(date -u +%Y/%m/%d-%H:%M:%S) >> $GITHUB_ENV
+          echo RELEASE_COMMIT=`echo ${GITHUB_SHA} | cut -c1-8` >> $GITHUB_ENV
       - uses: actions/checkout@v3
       - uses: wangyoucao577/go-release-action@v1.51
         with:
@@ -30,9 +30,9 @@ jobs:
           goos: ${{ matrix.goos }}
           goarch: ${{ matrix.goarch }}
           ldflags: |
-            -X "main.buildVersion=${{ env.VERSION }}" 
-            -X "main.buildCommit=${{ env.COMMIT }}"
-            -X "main.buildDate=${{ env.BUILD_DATE }}"
+            -X "main.buildVersion=${{ env.RELEASE_TAG }}" 
+            -X "main.buildCommit=${{ env.RELEASE_COMMIT }}"
+            -X "main.buildDate=${{ env.RELEASE_TIME }}"
           project_path: cmd/client
           asset_name: "GophKeeperClient-${{ env.RELEASE_TAG }}-${{ matrix.goos }}-${{ matrix.goarch }}"
           md5sum: false
