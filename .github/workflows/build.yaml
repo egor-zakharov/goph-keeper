@@ -31,6 +31,7 @@ jobs:
 
       - name: Build
         run: |
+          cd ./cmd/client
           GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -ldflags="-X 'main.buildVersion=${{ env.VERSION }}' -X 'main.buildCommit=${{ env.COMMIT }}' -X 'main.buildDate=${{ env.BUILD_DATE }}'" -o GophKeeperClient-${{ matrix.os }}-${{ matrix.arch }}
 
       - name: Upload Artifacts
