@@ -1,0 +1,247 @@
+syntax = "proto3";
+
+
+option go_package = "pkg/proto/gophkeeper";
+
+package proto.gophkeeper;
+
+// GophKeeperServer service provides ability to store date securely
+service GophKeeper{
+  rpc SignUp(SignUpRequest) returns (SignUpResponse);
+  rpc SignIn(SignInRequest) returns (SignInResponse);
+
+  rpc CreateAuthData(CreateAuthDataRequest) returns (CreateAuthDataResponse);
+  rpc GetAuthData(GetAuthDataRequest) returns (GetAuthDataResponse);
+  rpc UpdateAuthData(UpdateAuthDataRequest) returns (UpdateAuthDataResponse);
+  rpc DeleteAuthData(DeleteAuthDataRequest) returns (DeleteAuthDataResponse);
+
+  rpc CreateCard(CreateCardRequest) returns (CreateCardResponse);
+  rpc GetCards(GetCardsRequest) returns (GetCardsResponse);
+  rpc UpdateCard(UpdateCardRequest) returns (UpdateCardResponse);
+  rpc DeleteCard(DeleteCardRequest) returns (DeleteCardResponse);
+
+  rpc CreateTextData(CreateTextDataRequest) returns (CreateTextDataResponse);
+  rpc GetTextData(GetTextDataRequest) returns (GetTextDataResponse);
+  rpc UpdateTextData(UpdateTextDataRequest) returns (UpdateTextDataResponse);
+  rpc DeleteTextData(DeleteTextDataRequest) returns (DeleteTextDataResponse);
+
+  rpc SubscribeToChanges(SubscribeToChangesRequest) returns (stream SubscribeToChangesResponse);
+
+  rpc GetFiles(GetFilesRequest) returns (GetFilesResponse);
+  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+  rpc UploadFile(stream UploadFileRequest) returns (stream UploadFileResponse);
+  rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse);
+}
+
+message SignUpRequest {
+  string login = 1 ;
+  string password = 2 ;
+}
+
+message SignUpResponse {
+  string token = 1 ;
+}
+
+message SignInRequest {
+  string login = 1;
+  string password = 2 ;
+}
+
+message SignInResponse {
+  string token = 1;
+}
+
+message CreateCardRequest {
+  message Card {
+    string number = 1;
+    string expiration_date = 2;
+    string holder_name = 3;
+    string cvv = 4;
+  }
+  Card card = 1;
+}
+
+message CreateCardResponse {
+  string cardID = 1;
+}
+
+message GetCardsRequest {
+}
+
+
+message GetCardsResponse {
+  message Card {
+    string id = 1;
+    string number = 2;
+    string expiration_date = 3;
+    string holder_name = 4;
+    string cvv = 5;
+  }
+  repeated Card cards = 1;
+}
+
+message UpdateCardRequest {
+  message Card {
+    string id = 1;
+    string number = 2;
+    string expiration_date = 3;
+    string holder_name = 4;
+    string cvv = 5;
+  }
+  Card card = 1;
+}
+
+message UpdateCardResponse {
+  bool result = 1;
+}
+
+message DeleteCardRequest {
+  string id = 1;
+}
+
+message DeleteCardResponse {
+  bool result = 1;
+}
+
+message CreateAuthDataRequest {
+  message Data {
+    string meta = 1;
+    string login = 2;
+    string password = 3;
+  }
+  Data data = 1;
+}
+
+message CreateAuthDataResponse {
+  string id = 1 ;
+}
+
+message GetAuthDataRequest {
+}
+
+message GetAuthDataResponse {
+  message Data {
+    string id = 1 ;
+    string meta = 2;
+    string login = 3;
+    string password = 4;
+  }
+  repeated Data data = 1;
+}
+
+message UpdateAuthDataRequest {
+  message Data {
+    string id = 1 ;
+    string meta = 2;
+    string login = 3;
+    string password = 4;
+  }
+  Data data = 1;
+}
+
+message UpdateAuthDataResponse {
+  bool result = 1;
+}
+
+message DeleteAuthDataRequest {
+  string id = 1 ;
+}
+
+message DeleteAuthDataResponse {
+  bool result = 1;
+}
+
+message CreateTextDataRequest {
+  message Data {
+    string meta = 1;
+    string text = 2;
+  }
+  Data data = 1;
+}
+
+message CreateTextDataResponse {
+  string id = 1 ;
+}
+
+message GetTextDataRequest {
+}
+
+message GetTextDataResponse {
+  message Data {
+    string id = 1 ;
+    string meta = 2;
+    string text = 3;
+  }
+  repeated Data data = 1;
+}
+
+message UpdateTextDataRequest {
+  message Data {
+    string id = 1 ;
+    string meta = 2;
+    string text = 3;
+  }
+  Data data = 1;
+}
+
+message UpdateTextDataResponse {
+  bool result = 1;
+}
+
+message DeleteTextDataRequest {
+  string id = 1 ;
+}
+
+message DeleteTextDataResponse {
+  bool result = 1;
+}
+
+message SubscribeToChangesRequest {
+}
+
+message SubscribeToChangesResponse {
+  string product = 1;
+  string action = 2;
+  string id = 3;
+}
+
+message UploadFileRequest {
+  message File {
+    bytes data = 1;
+    string filename = 2;
+    string meta = 3;
+  }
+  File file = 1;
+}
+
+message UploadFileResponse {
+  string id = 1;
+}
+
+message GetFilesRequest {
+}
+
+message GetFilesResponse {
+  message File {
+    string id = 1;
+    string name = 2;
+    string meta = 3;
+  }
+  repeated File files = 1;
+}
+
+message DeleteFileRequest {
+  string id = 1;
+}
+
+message DeleteFileResponse {
+  bool result = 1;
+}
+
+message DownloadFileRequest {
+  string id = 1;
+}
+
+message DownloadFileResponse {
+  bytes data = 1;
+}
